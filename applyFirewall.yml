@@ -52,6 +52,8 @@
   become: yes
   become_user: root
 
+  strategy: free
+
   tasks:
   - name: Allow access to port 443 from Myra hosts
     ufw:
