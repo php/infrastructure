@@ -125,7 +125,7 @@ static			IN CNAME STAR-php-net.ax4z.com.
 
 ; MX and related entries for php.net
 @			30 IN MX 0 php-smtp4-ip4.php.net.
-mailout		IN CNAME php-smtp4.php.net.
+mailout		IN CNAME php-smtp4-ip4.php.net.
 
 php.net.		IN TXT "v=spf1 ip4:140.211.15.143 ip4:45.112.84.5 ip4:142.93.197.176 ip6:2604:a880:400:d0::1c74:1001 ip6:2a02:cb43:8000::1102 ip4:157.90.121.187 ip6:2a01:4f8:1c1e:416d::1 ~all"
 
