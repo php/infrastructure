@@ -38,7 +38,7 @@
 
 
 - hosts:
-  - downloads
+  - static
 
   become: true
   become_user: root

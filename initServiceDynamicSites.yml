@@ -2,7 +2,7 @@
 # ansible-playbook initServiceDynamicSites.yml
 
 - hosts:
-  - pecl
+  - dynamic
 
   become: yes
   become_user: root

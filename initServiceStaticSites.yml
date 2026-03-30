@@ -2,7 +2,7 @@
 # ansible-playbook initServiceStaticSites.yml
 
 - hosts:
-  - downloads
+  - static
 
   become: yes
   become_user: root

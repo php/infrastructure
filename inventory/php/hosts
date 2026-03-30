@@ -8,8 +8,8 @@ rsync0 ansible_host=rsync0-ams.internal.php.net
 [service:children]
 museum
 wiki
-downloads
-pecl
+static
+dynamic
 analytics
 
 [museum]
@@ -18,10 +18,10 @@ service0 ansible_host=service0-ams.internal.php.net
 [wiki]
 service1 ansible_host=service1-ams.internal.php.net
 
-[downloads]
+[static]
 service2 ansible_host=service2-ams.internal.php.net
 
-[pecl]
+[dynamic]
 service3 ansible_host=service3-ams.internal.php.net
 
 [analytics]

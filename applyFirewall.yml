@@ -70,7 +70,7 @@
     loop: "{{ test_hosts }}"
 
 - hosts:
-  - downloads
+  - static
 
   become: yes
   become_user: root
@@ -85,7 +85,7 @@
     loop: "{{ pecl_hosts }}"
 
 - hosts:
-  - pecl
+  - dynamic
 
   become: yes
   become_user: root
@@ -109,7 +109,7 @@
 
 # Import GitHub APIs for hooks, so that we open up webhooks to main.internal.php.net
 - hosts:
-  - pecl
+  - dynamic
 
   become: yes
   become_user: root
