@@ -4,7 +4,7 @@ PHP Infrastructure
 This repository contains the Ansible playbooks and associated scripts that
 describes the infrastructure of php.net and its associated properties.
 
-There are many of them, and they are described in ``docs/Services.rst``.
+There are many of them, and they are described in `<docs/Services.rst>`_.
 
 The documentation is very much not complete, but work is on the way to improve
 on this.
@@ -38,7 +38,7 @@ As you can not directly SSH into a server, that also means that the Ansible
 playbooks can not be run before you have established an SSH tunnel to one of
 the jump hosts.
 
-The scripts in `bin/`_ use the configuration in the `etc/`_ directory to set up
+The scripts in `<bin/>`_ use the configuration in the `<etc/>`_ directory to set up
 these tunnels. You will obviously need to have an account on both the jump
 hosts and each server.
 
@@ -54,5 +54,5 @@ access to that before you can run any of the playbooks.
 DNS
 ---
 
-The DNS configuration is in `inventory/php.net.zone`_. It can be applied to our
-third-party DNS provider through the `updateDns.yml`_ playbook.
+The DNS configuration is in `<inventory/php.net.zone>`_. It can be applied to our
+third-party DNS provider through the `<updateDns.yml>`_ playbook.
