@@ -1,8 +1,14 @@
-downloads_docroot: /var/www/sites
-downloads_config_file: downloads.php.net.conf
+property: "downloads"
+
+downloads_domain: "downloads.php.net"
+downloads_domain_alias: "downloads.internal.php.net"
+
+downloads_docroot: "{{ common_doc_root }}"
+downloads_config_file: "{{ property }}.{{ domain }}.conf"
 
 downloads_home_dir: /home
-downloads_box: /local/this-box/downloads
+downloads_box: "{{ box_dir }}/{{ property }}"
+
 php_sdk_dir: "{{ downloads_box }}/php-sdk-binary-tools"
 
 windows_public_dir: /home/windows/public_html

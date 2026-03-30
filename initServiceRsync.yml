@@ -1,5 +1,5 @@
 # Run this playbook to set up your Rsync machine
-# ansible-playbook initRsync.yml
+# ansible-playbook initServiceRsync.yml
 
 - hosts:
   - rsync

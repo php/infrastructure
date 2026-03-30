@@ -1,5 +1,7 @@
+property: "rsync"
+
 rsync_box_volume: /mnt/volume_ams3_01
-rsync_box_dir: /local/this-box/rsync
+rsync_box_dir: "/local/this-box/{{ property }}" # hard coded box dir, because it's otherwise not available
 
 rsync_repositories_dir: "{{ rsync_box_dir }}/repositories"
 rsync_mirrors_dir: "{{ rsync_box_dir }}/mirrors"

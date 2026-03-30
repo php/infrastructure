@@ -1,6 +1,11 @@
-talks_docroot: /var/www/sites/talks.php.net
-talks_config_file: talks.php.net.conf
+property: "talks"
+
+talks_domain: "{{ property }}.{{ domain }}"
+talks_domain_alias: "{{ property }}.{{ internal_domain }}"
+
+talks_docroot: "{{ common_doc_root }}/{{ property }}.{{ domain }}"
+talks_config_file: "{{ property }}.{{ domain }}.conf"
 
 # For the aliases where talks was also configured, we set up redirects
-talks_redirect_config_file: talks-redirect.php.net.conf
+talks_redirect_config_file: "talks-redirect.{{ domain }}.conf"
 talks_old_aliases: [ "conf", "conf2", "pres", "pres2" ]

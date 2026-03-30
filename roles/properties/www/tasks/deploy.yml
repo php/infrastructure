@@ -1,7 +1,7 @@
 - name: Create local directory to store www content
   file:
     state: directory
-    dest: "{{ www_docroot }}/{{ www_domain }}"
+    dest: "{{ www_docroot }}"
     mode: "755"
 
 - name: Copy update-www script to the server

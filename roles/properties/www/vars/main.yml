@@ -1,6 +1,11 @@
-www_docroot: /var/www/sites/www.php.net
-www_config_file: www.php.net.conf
+property: "www"
+
+www_domain: "{{ property }}.{{ domain }}"
+www_domain_alias: "{{ property }}.{{ internal_domain }}"
+
+www_docroot: "{{ common_doc_root }}/{{ property }}.{{ domain }}"
+www_config_file: "{{ property }}.{{ domain }}.conf"
 
 # For the aliases where www was also configured, we set up redirects
-www_redirect_config_file: www-redirect.php.net.conf
+www_redirect_config_file: "www-redirect.{{ domain }}.conf"
 www_old_aliases: [ "static", "secure" ]

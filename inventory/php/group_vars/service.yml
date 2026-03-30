@@ -1,3 +1,10 @@
+# Common Definitions
+domain: "php.net"
+internal_domain: "internal.php.net"
+common_doc_root: "/var/www/sites"
+box_dir: "/local/this-box"
+
+# Service Hosts
 jumphost: "{{ host | default('jump-ams-1.internal.php.net') }}"
 
 myra_hosts: [ "103.51.164.0/22", "185.85.3.0/24", "213.155.71.142/32", "213.61.215.48/29", "45.112.84.0/22", "45.91.156.0/22", "5.9.89.19/32", "80.90.0.0/20", "82.199.130.0/24", "82.199.157.0/24", "2001:920:198c::fefe/128", "2a01:4a0::/32", "2a01:4f8:162:1346::2/128", "2a02:cb43::/32", "2a02:cb44::/32", "2a02:cb45:101::/48", "2a02:cb46::/32", "2a02:cb47::/32" ]
@@ -10,59 +17,14 @@ pecl_hosts: [ "104.236.228.160", "157.245.79.146" ]
 easy_dns_hosts: [ "64.68.200.91" ]
 
 # Private network address that services should rsync from
-rsync_address: '{{ hostvars["rsync0"].ansible_eth1.ipv4.address }}'
+rsync_address: '{{ hostvars["rsync0"].ansible_facts["eth1"].ipv4.address }}'
 
 # These services and servers need (POST) access to main.internal.php.net
 access_to_main_hosts:
 - 104.236.36.140 # The 'old' lists.php.net server, so that people can subscribe to MLs
 
-downloads_domain: downloads.php.net
-downloads_domain_alias: downloads.internal.php.net
-
-shared_domain: shared.php.net
-shared_domain_alias: shared.internal.php.net
-
-qa_domain: qa.php.net
-qa_domain_alias: qa.internal.php.net
-
-wiki_domain: wiki.php.net
-wiki_domain_alias: wiki.internal.php.net
-
-museum_domain: museum.php.net
-museum_domain_alias: museum.internal.php.net
-
-talks_domain: talks.php.net
-talks_domain_alias: talks.internal.php.net
-
-pecl_domain: pecl.php.net
-pecl_domain_alias: pecl.internal.php.net
-
-bugs_domain: bugs.php.net
-bugs_domain_alias: bugs.internal.php.net
-
-main_domain: main.php.net
-main_domain_alias: main.internal.php.net
-
-gtk_domain: gtk.php.net
-gtk_domain_alias: gtk.internal.php.net
-
-people_domain: people.php.net
-people_domain_alias: people.internal.php.net
-
-doc_domain: doc.php.net
-doc_domain_alias: doc.internal.php.net
-
-analytics_domain: analytics.php.net
-analytics_domain_alias: analytics.internal.php.net
-
-windows_domain: windows.php.net
-windows_domain_alias: windows.internal.php.net
-
-www_domain: www.php.net
-www_domain_alias: www.internal.php.net
-
-systems_email: systems@php.net
+systems_email: "systems@{{ domain }}"
 master_email: "{{ systems_email }}"
 
 # Non property configuration
-bind_php_net_zone_file: /etc/bind/db.php.net
+bind_php_net_zone_file: "/etc/bind/db.{{ domain }}"

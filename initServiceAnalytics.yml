@@ -1,4 +1,4 @@
-# Run this playbook to set up your downloads machine
+# Run this playbook to set up your analytics machine
 # ansible-playbook initServiceAnalytics.yml
 
 - hosts:

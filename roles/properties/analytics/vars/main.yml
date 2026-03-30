@@ -1,8 +1,13 @@
-analytics_docroot: /var/www/sites
-analytics_config_file: analytics.php.net.conf
+property: "analytics"
+
+analytics_domain: "{{ property }}.{{ domain }}"
+analytics_domain_alias: "{{ property }}.{{ internal_domain }}"
+
+analytics_docroot: "{{ common_doc_root }}"
+analytics_config_file: "{{ property }}.{{ domain }}.conf"
 
 analytics_username: matomo
 analytics_database: matomo
 
-analytics_box_dir: /local/this-box/analytics
+analytics_box_dir: "{{ box_dir }}/{{ property }}"
 

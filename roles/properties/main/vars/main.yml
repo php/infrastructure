@@ -1,8 +1,13 @@
-main_docroot: /var/www/sites
-main_config_file: main.php.net.conf
+property: "main"
+
+main_domain: "{{ property }}.{{ domain }}"
+main_domain_alias: "{{ property }}.{{ internal_domain }}"
+
+main_docroot: "{{ common_doc_root }}"
+main_config_file: "{{ property }}.{{ domain }}.conf"
 
 main_db_username: mainuser
 main_db_password: mainpw
 main_db_database: phpmasterdb
 
-main_box_dir: /local/this-box/main
+main_box_dir: "{{ box_dir }}/{{ property }}"

@@ -1,12 +1,17 @@
-pecl_docroot: /var/www/sites
-pecl_config_file: pecl.php.net.conf
+property: "pecl"
+
+pecl_domain: "{{ property }}.{{ domain }}"
+pecl_domain_alias: "{{ property }}.{{ internal_domain }}"
+
+pecl_docroot: "{{ common_doc_root }}"
+pecl_config_file: "{{ property }}.{{ domain }}.conf"
 
 pecl_username: pecl
 pecl_password: pecl
 pecl_database: peclweb
 pecl_dsn: "mysqli://{{ pecl_username }}:{{ pecl_password }}@127.0.0.1/{{ pecl_database }}"
 
-pecl_box_dir: /local/this-box/pecl
+pecl_box_dir: "{{ box_dir }}/{{ property }}"
 pecl_packages_dir: "{{ pecl_box_dir }}/packages"
 pecl_rest_dir: "{{ pecl_box_dir }}/rest"
 pecl_tmp_dir: "{{ pecl_box_dir }}/tmp"

@@ -1,2 +1,7 @@
-shared_docroot: /var/www/sites
-shared_config_file: shared.php.net.conf
+property: "shared"
+
+shared_domain: "{{ property }}.{{ domain }}"
+shared_domain_alias: "{{ property }}.{{ internal_domain }}"
+
+shared_docroot: "{{ common_doc_root }}"
+shared_config_file: "{{ property }}.{{ domain }}.conf"
