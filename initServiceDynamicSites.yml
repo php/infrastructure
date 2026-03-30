@@ -1,5 +1,5 @@
-# Run this playbook to set up your downloads machine
-# ansible-playbook initServiceDownloads.yml
+# Run this playbook to set up your machine with all sites requiring a database
+# ansible-playbook initServiceDynamicSites.yml
 
 - hosts:
   - pecl
