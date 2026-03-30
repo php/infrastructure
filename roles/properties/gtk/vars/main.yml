@@ -1,2 +1,7 @@
-gtk_docroot: /var/www/sites/gtk.php.net
-gtk_config_file: gtk.php.net.conf
+property: "gtk"
+
+gtk_domain: "{{ property }}.{{ domain }}"
+gtk_domain_alias: "{{ property }}.{{ internal_domain }}"
+
+gtk_docroot: "{{ common_doc_root }}/{{ gtk_domain }}"
+gtk_config_file: "{{ property }}.{{ domain }}.conf"

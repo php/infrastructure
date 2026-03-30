@@ -1,2 +1,7 @@
-qa_docroot: /var/www/sites
-qa_config_file: qa.php.net.conf
+property: "qa"
+
+qa_domain: "{{ property }}.{{ domain }}"
+qa_domain_alias: "{{ property }}.{{ internal_domain }}"
+
+qa_docroot: "{{ common_doc_root }}"
+qa_config_file: "{{ property }}.{{ domain }}.conf"

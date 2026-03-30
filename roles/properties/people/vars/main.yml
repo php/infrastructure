@@ -1,2 +1,7 @@
-people_docroot: /var/www/sites
-people_config_file: people.php.net.conf
+property: "people"
+
+people_domain: "{{ property }}.{{ domain }}"
+people_domain_alias: "{{ property }}.{{ internal_domain }}"
+
+people_docroot: "{{ common_doc_root }}"
+people_config_file: "{{ property }}.{{ domain }}.conf"

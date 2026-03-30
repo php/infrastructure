@@ -1,7 +1,12 @@
-wiki_docroot: /var/www/sites/wiki.php.net
-wiki_data_dir: /local/this-box/wiki-data
+property: "wiki"
+
+wiki_domain: "{{ property }}.{{ domain }}"
+wiki_domain_alias: "{{ property }}.{{ internal_domain }}"
+
+wiki_docroot: "{{ common_doc_root }}"
 wiki_config_file: wiki.conf
-wiki_mod_remoteip_config_file: remoteip.conf
+
+wiki_data_dir: "{{ box_dir }}/wiki-data"
 
 backup_dir: /local/backups
 backup_paths: [ "{{ wiki_data_dir }}" ]

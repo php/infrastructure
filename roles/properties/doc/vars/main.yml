@@ -1,7 +1,12 @@
-doc_docroot: /var/www/sites
-doc_config_file: doc.php.net.conf
+property: "doc"
 
-doc_box_dir: /local/this-box/doc
+doc_domain: "doc.{{ domain }}"
+doc_domain_alias: "doc.{{ internal_domain }}"
+
+doc_docroot: "{{ common_doc_root }}"
+doc_config_file: "{{ property }}.{{ domain }}.conf"
+
+doc_box_dir: "{{ box_dir }}/{{ property }}"
 
 doc_sqlite_dir: "{{ doc_docroot }}/{{ doc_domain }}/www/sqlite"
 

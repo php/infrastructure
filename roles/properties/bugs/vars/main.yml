@@ -1,10 +1,15 @@
-bugs_docroot: /var/www/sites
-bugs_config_file: bugs.php.net.conf
+property: "bugs"
+
+bugs_domain: "{{ property }}.{{ domain }}"
+bugs_domain_alias: "{{ property }}.{{ internal_domain }}"
+
+bugs_docroot: "{{ common_doc_root }}"
+bugs_config_file: "{{ property }}.{{ domain }}.conf"
 
 bugs_username: bugsweb
 bugs_password: "this will change"
 bugs_database: phpbugsdb
 
-bugs_box_dir: /local/this-box/bugs
+bugs_box_dir: "{{ box_dir }}/{{ property }}"
 bugs_patches_dir: "{{ bugs_box_dir }}/uploads/patches/"
 
