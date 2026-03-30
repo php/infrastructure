@@ -1,12 +1,16 @@
-# Access control
+Access Control
+==============
 
+**This documentation is not yet up to date**
 
-## Add a new user
+Add a new user
+--------------
 
 To add a new user, an admin or a release-manager, you use the related playbooks.
 
 
-### prerequisites
+Prerequisites
+~~~~~~~~~~~~~
 
 - You need the `.google_authenticator` file somewhere on your local machine
 - You have to put the ssh key to `roles/add_ssh_key/templates/ssh_keys/username`.
@@ -19,7 +23,8 @@ The playbooks take the required parameters `username` and `path_to_google_auth`:
 It creates a linux user and copies the `.google_authenticator` file and the `authorized_keys` to the user's homedir.
 
 
-### Add an admin user
+Add an admin user
+~~~~~~~~~~~~~~~~~
 
 ```shell
 ansible-playbook addAdminUser.yml --extra-vars "username=rocko path_to_google_auth=absolute/path/to/.google_authenticator"
@@ -29,7 +34,8 @@ This playbook creates a new user on jumphosts and all services.
 User group is `sudo`. It puts the `.google_authenticator` file to the jumphost and the ssh-key to everywhere.
 
 
-### Add a release-manager user
+Add a release-manager user
+~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 A release manager has only access to the downloads machine.
 
@@ -41,7 +47,8 @@ This playbook creates a new user on jumphosts and the downloads service.
 User group is `release-manager`. It puts the `.google_authenticator` file to the jumphost and the ssh-key to the downloads service.
 
 
-### Delete a user
+Delete a user
+~~~~~~~~~~~~~
 
 To delete a user you can run the `deleteUser` playbook.
 

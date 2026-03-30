@@ -1,5 +1,8 @@
 # Ansible for PHP with STA project
 
+**This is the original README as part of the STA project. It is not yet been
+updated for the current state of this project, and should only be used as a
+reasonable reference. This document is going to go away.**
 
 ## Proposal
 
