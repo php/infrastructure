@@ -17,7 +17,7 @@ pecl_hosts: [ "104.236.228.160", "157.245.79.146" ]
 easy_dns_hosts: [ "64.68.200.91" ]
 
 # Private network address that services should rsync from
-rsync_address: '{{ hostvars["rsync0"].ansible_eth1.ipv4.address }}'
+rsync_address: '{{ hostvars["rsync0"].ansible_facts["eth1"].ipv4.address }}'
 
 # These services and servers need (POST) access to main.internal.php.net
 access_to_main_hosts:
