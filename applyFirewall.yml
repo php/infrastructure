@@ -36,7 +36,7 @@
   - name: Allow ssh only from jumphosts
     ufw:
       rule: allow
-      from_ip: "{{ hostvars[item].ansible_default_ipv4.address }}"
+      from_ip: "{{ hostvars[item].ansible_facts['default_ipv4'].address }}"
       port: 22
     loop: "{{ groups['jumphost'] }}"
 
@@ -166,7 +166,7 @@
   - name: Allow rsync from services
     ufw:
       rule: allow
-      from_ip: "{{ hostvars[item].ansible_eth1.ipv4.address }}"
+      from_ip: "{{ hostvars[item].ansible_facts['eth1'].ipv4.address }}"
       port: 873
     loop: "{{ groups['service'] }}"
 
