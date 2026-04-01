@@ -1,2 +1,2 @@
 #!/bin/sh
-rsync -azC --timeout=600 --delete --delete-after --exclude=configuration.inc --exclude=logs --exclude=.git {{ rsync_address }}::php-people-web {{ people_docroot }}/{{ people_domain }}
+rsync -azC --timeout=600 --delete --delete-after --exclude=configuration.inc --exclude=logs --exclude=.git {{ rsync_address }}::php-people-web {{ people_docroot }}

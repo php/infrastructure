@@ -1,7 +1,7 @@
 - name: Create local directory to store people content
   file:
     state: directory
-    dest: "{{ people_docroot }}/{{ people_domain }}"
+    dest: "{{ people_docroot }}"
     mode: "755"
 
 - name: Copy update-people script to the server
