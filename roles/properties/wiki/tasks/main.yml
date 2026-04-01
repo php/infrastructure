@@ -3,7 +3,7 @@
 
 - name: Add Apache config for wiki
   template:
-    src: templates/wiki.conf
+    src: "templates/{{ wiki_config_file }}"
     dest: "/etc/apache2/sites-available/{{ wiki_config_file }}"
   notify: reload apache
 
@@ -34,6 +34,6 @@
   include_role:
     name: restore_property
   vars:
-    property: wiki-data
+    property: wiki
     backup_path: '{{ wiki_data_dir }}'
   when: restore_data is defined and restore_data

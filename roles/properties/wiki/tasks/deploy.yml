@@ -5,7 +5,6 @@
     mode: "755"
     owner: www-data
     group: www-data
-    recurse: yes
 
 - name: Create local directores for dokuwiki data elements
   file:
@@ -14,7 +13,6 @@
     mode: "755"
     owner: www-data
     group: www-data
-    recurse: yes
   loop:
    - auth
    - log

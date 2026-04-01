@@ -3,8 +3,8 @@ property: "wiki"
 wiki_domain: "{{ property }}.{{ domain }}"
 wiki_domain_alias: "{{ property }}.{{ internal_domain }}"
 
-wiki_docroot: "{{ common_doc_root }}"
-wiki_config_file: wiki.conf
+wiki_docroot: "{{ common_doc_root }}/{{ wiki_domain }}"
+wiki_config_file: "{{ property }}.{{ domain }}.conf"
 
 wiki_data_dir: "{{ box_dir }}/wiki-data"
 
