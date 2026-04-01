@@ -3,7 +3,7 @@ property: "pecl"
 pecl_domain: "{{ property }}.{{ domain }}"
 pecl_domain_alias: "{{ property }}.{{ internal_domain }}"
 
-pecl_docroot: "{{ common_doc_root }}"
+pecl_docroot: "{{ common_doc_root }}/{{ pecl_domain }}"
 pecl_config_file: "{{ property }}.{{ domain }}.conf"
 
 pecl_username: pecl

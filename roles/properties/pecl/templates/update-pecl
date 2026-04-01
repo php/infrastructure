@@ -1,4 +1,4 @@
 #!/bin/sh
 
-rsync -azC --timeout=600 --delete --delete-after --exclude=logs --exclude=public_html/rest --exclude=public_html/packages {{ rsync_address }}::peclweb {{ pecl_docroot }}/{{ pecl_domain }}
+rsync -azC --timeout=600 --delete --delete-after --exclude=logs --exclude=public_html/rest --exclude=public_html/packages {{ rsync_address }}::peclweb {{ pecl_docroot }}
 

@@ -1,7 +1,7 @@
 - name: Create local directory to store peclweb content
   file:
     state: directory
-    dest: "{{ pecl_docroot }}/{{ pecl_domain }}"
+    dest: "{{ pecl_docroot }}/"
     mode: "755"
 
 - name: Create local 'parent' directory to store information
@@ -29,13 +29,13 @@
   file:
     state: link
     src: "{{ pecl_rest_dir }}"
-    dest: "{{ pecl_docroot }}/{{ pecl_domain }}/public_html/rest"
+    dest: "{{ pecl_docroot }}/public_html/rest"
 
 - name: Create symlink from public_html to packages dir
   file:
     state: link
     src: "{{ pecl_packages_dir }}"
-    dest: "{{ pecl_docroot }}/{{ pecl_domain }}/public_html/packages"
+    dest: "{{ pecl_docroot }}/public_html/packages"
 
 - name: Create database
   community.mysql.mysql_db:
