@@ -13,13 +13,16 @@
     update_cache: yes
 
 - name: Enable extra PHP extensions
-  shell: "phpenmod {{ item }}"
+  shell: "phpenmod {{ item.extension }}"
   args:
-    creates: "/etc/php/8.2/apache2/conf.d/20-{{ item }}.ini"
+    creates: "/etc/php/8.2/apache2/conf.d/{{ item.priority }}-{{ item.extension }}.ini"
   loop:
-    - gd
-    - mysqli
-    - xml
+    - extension: gd
+      priority: 20
+    - extension: mysqli
+      priority: 20
+    - extension: xml
+      priority: 15
   notify: reload apache
 
 - name: Add site specific settings
