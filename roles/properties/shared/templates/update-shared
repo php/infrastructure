@@ -1,2 +1,2 @@
 #!/bin/sh
-rsync -azC --timeout=600 --delete --delete-after {{ rsync_address }}::php-shared {{ shared_docroot }}/{{ shared_domain }}
+rsync -azC --timeout=600 --delete --delete-after {{ rsync_address }}::php-shared {{ shared_docroot }}

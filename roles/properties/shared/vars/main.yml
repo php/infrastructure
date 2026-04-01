@@ -3,5 +3,5 @@ property: "shared"
 shared_domain: "{{ property }}.{{ domain }}"
 shared_domain_alias: "{{ property }}.{{ internal_domain }}"
 
-shared_docroot: "{{ common_doc_root }}"
+shared_docroot: "{{ common_doc_root }}/{{ shared_domain }}"
 shared_config_file: "{{ property }}.{{ domain }}.conf"
