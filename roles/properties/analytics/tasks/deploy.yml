@@ -1,7 +1,7 @@
 - name: Create local directory to store analytics content
   file:
     state: directory
-    dest: "{{ analytics_docroot }}/{{ analytics_domain }}"
+    dest: "{{ analytics_docroot }}"
     mode: "755"
 
 - name: Create local 'parent' directory to store information

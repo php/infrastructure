@@ -3,7 +3,7 @@ property: "analytics"
 analytics_domain: "{{ property }}.{{ domain }}"
 analytics_domain_alias: "{{ property }}.{{ internal_domain }}"
 
-analytics_docroot: "{{ common_doc_root }}"
+analytics_docroot: "{{ common_doc_root }}/{{ analytics_domain }}"
 analytics_config_file: "{{ property }}.{{ domain }}.conf"
 
 analytics_username: matomo

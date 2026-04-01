@@ -8,17 +8,17 @@ if [ -f /var/www/analytics/www/config/config.ini.php ]; then
 fi
 
 # rsync updates
-rsync -azC --timeout=600 --delete --delete-after --include="core" --exclude "www/misc/DBIP-City.mmdb" {{ rsync_address }}::php-analytics-web {{ analytics_docroot }}/{{ analytics_domain }}
+rsync -azC --timeout=600 --delete --delete-after --include="core" --exclude "www/misc/DBIP-City.mmdb" {{ rsync_address }}::php-analytics-web {{ analytics_docroot }}
 
 # replace salt in /var/www/analytics/www/config/config.ini.php
 SALT=`cat {{ analytics_box_dir }}/matomo.env.salt`
-cat {{ analytics_docroot }}/{{ analytics_domain }}/www/config/config.ini.php | sed "s/PLACEHOLDERFORSALT-REPLACEDONDEPLOY/${SALT}/" > /tmp/config.ini.php && \
-    mv /tmp/config.ini.php {{ analytics_docroot }}/{{ analytics_domain }}/www/config/config.ini.php
+cat {{ analytics_docroot }}/www/config/config.ini.php | sed "s/PLACEHOLDERFORSALT-REPLACEDONDEPLOY/${SALT}/" > /tmp/config.ini.php && \
+    mv /tmp/config.ini.php {{ analytics_docroot }}/www/config/config.ini.php
 
 # restore all user permissions
-chown -R www-data:www-data {{ analytics_docroot }}/{{ analytics_domain }}
+chown -R www-data:www-data {{ analytics_docroot }}
 
 # link back in the GeoIP DB
-if [ ! -f "{{ analytics_docroot }}/{{ analytics_domain }}/www/misc/DBIP-City.mmdb" ]; then
-    ln -s {{ analytics_box_dir }}/DBIP-City.mmdb {{ analytics_docroot }}/{{ analytics_domain }}/www/misc
+if [ ! -f "{{ analytics_docroot }}/www/misc/DBIP-City.mmdb" ]; then
+    ln -s {{ analytics_box_dir }}/DBIP-City.mmdb {{ analytics_docroot }}/www/misc
 fi
