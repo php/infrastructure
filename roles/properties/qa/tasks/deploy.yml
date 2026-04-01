@@ -1,11 +1,11 @@
 - name: Create local directory to store QA content
   file:
     state: directory
-    dest: "{{ qa_docroot }}/{{ qa_domain }}"
+    dest: "{{ qa_docroot }}"
     mode: "755"
 
 - name: Put robots.txt in document root
   template:
     src: templates/robots.txt
-    dest: "{{ qa_docroot }}/{{ qa_domain }}/robots.txt"
+    dest: "{{ qa_docroot }}/robots.txt"
     mode: "644"
