@@ -1,4 +1,4 @@
 #!/bin/sh
 
-rsync -azC --timeout=600 --delete --delete-after --exclude=logs --exclude=uploads --exclude=local_config.php {{ rsync_address }}::php-bugs-web {{ bugs_docroot }}/{{ bugs_domain }}
-chown -R www-data:www-data {{ bugs_docroot }}/{{ bugs_domain }}
+rsync -azC --timeout=600 --delete --delete-after --exclude=logs --exclude=uploads --exclude=local_config.php {{ rsync_address }}::php-bugs-web {{ bugs_docroot }}
+chown -R www-data:www-data {{ bugs_docroot }}

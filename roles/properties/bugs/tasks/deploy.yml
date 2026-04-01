@@ -1,7 +1,7 @@
 - name: Create local directory to store bugs content
   file:
     state: directory
-    dest: "{{ bugs_docroot }}/{{ bugs_domain }}"
+    dest: "{{ bugs_docroot }}"
     mode: "755"
 
 - name: Create local 'parent' directory to store information
@@ -21,19 +21,19 @@
     owner: "www-data"
   loop:
     - "{{ bugs_patches_dir }}"
-    - "{{ bugs_docroot }}/{{ bugs_domain }}/www"
-    - "{{ bugs_docroot }}/{{ bugs_domain }}/www/uploads"
+    - "{{ bugs_docroot }}/www"
+    - "{{ bugs_docroot }}/www/uploads"
 
 - name: Install bugsweb local config file
   template:
     src: templates/local_config.php
-    dest: "{{ bugs_docroot }}/{{ bugs_domain }}/local_config.php"
+    dest: "{{ bugs_docroot }}/local_config.php"
 
 - name: Create symlink from public_html to uploads/patches dir
   file:
     state: link
     src: "{{ bugs_patches_dir }}"
-    dest: "{{ bugs_docroot }}/{{ bugs_domain }}/www/uploads/patches"
+    dest: "{{ bugs_docroot }}/www/uploads/patches"
 
 - name: Create database
   community.mysql.mysql_db:
