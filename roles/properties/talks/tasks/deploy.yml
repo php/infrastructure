@@ -1,7 +1,7 @@
 - name: Create local directory to store talks content
   file:
     state: directory
-    dest: "{{ talks_docroot }}/{{ talks_domain }}"
+    dest: "{{ talks_docroot }}"
     mode: "755"
 
 - name: Create config.php file to configure the presentation system
