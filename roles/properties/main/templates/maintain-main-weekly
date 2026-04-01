@@ -1,4 +1,4 @@
 #!/bin/sh
 
-php "{{ main_docroot }}/{{ main_domain }}/scripts/email-note-summaries"
-php "{{ main_docroot }}/{{ main_domain }}/scripts/remove-low-rated-notes"
+php "{{ main_docroot }}/scripts/email-note-summaries"
+php "{{ main_docroot }}/scripts/remove-low-rated-notes"

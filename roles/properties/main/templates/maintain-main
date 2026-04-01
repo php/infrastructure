@@ -1,3 +1,3 @@
 #!/bin/sh
 
-rsync -azC --timeout=600 --delete --delete-after --filter='P php.net.zone' {{ rsync_address }}::php-main-web {{ main_docroot }}/{{ main_domain }}
+rsync -azC --timeout=600 --delete --delete-after --filter='P php.net.zone' {{ rsync_address }}::php-main-web {{ main_docroot }}

@@ -16,17 +16,17 @@
 - name: Create local directory to store php-main-web
   file:
     state: directory
-    dest: "{{ main_docroot }}/{{ main_domain }}/public/fetch"
+    dest: "{{ main_docroot }}/public/fetch"
     mode: "755"
-    group: www-data
-    owner: www-data
+    group: root
+    owner: root
     recurse: yes
 
 - name: Create symlink to zone file for fetching through web
   file:
     state: link
     src: "{{ bind_php_net_zone_file }}"
-    dest: "{{ main_docroot }}/{{ main_domain }}/public/fetch/php.net.zone"
+    dest: "{{ main_docroot }}/public/fetch/php.net.zone"
     force: yes
 
 # Database Elements
