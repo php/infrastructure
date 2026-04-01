@@ -1,7 +1,7 @@
 - name: Create local directory to store museum content
   file:
     state: directory
-    dest: "{{ museum_docroot }}/{{ museum_domain }}"
+    dest: "{{ museum_docroot }}"
     mode: "755"
     recurse: yes
 

@@ -6,4 +6,4 @@ museum_domain_alias: "{{ property }}.{{ internal_domain }}"
 # Change version number to update nginx
 nginx_version: "1.27.4"
 
-museum_docroot: "{{ common_doc_root }}"
+museum_docroot: "{{ common_doc_root }}/{{ museum_domain }}"

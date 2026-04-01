@@ -18,17 +18,20 @@
   get_url:
     url: http://nginx.org/download/nginx-{{ nginx_version }}.tar.gz
     dest: /tmp/nginx-{{ nginx_version }}.tar.gz
+  check_mode: false
 
 - name: Extract Nginx source
   unarchive:
     src: /tmp/nginx-{{ nginx_version }}.tar.gz
     dest: /tmp
     remote_src: yes
+  check_mode: false
 
 - name: Download ngx-fancyindex module
   git:
     repo: https://github.com/aperezdc/ngx-fancyindex.git
     dest: /tmp/ngx-fancyindex
+  check_mode: false
 
 # We use self signed SSL certs, so --with-http_ssl_module is needed
 # default user is nobody
@@ -41,6 +44,7 @@
   args:
     chdir: /tmp
     creates: /usr/local/nginx/sbin/nginx
+  check_mode: false
 
 # Make `nginx` available in Terminal
 - name: Make nginx available in PATH
@@ -48,6 +52,7 @@
     src: /usr/local/nginx/sbin/nginx
     dest: /usr/bin/nginx
     state: link
+  check_mode: false
 
 - name: Create the SSL Certificate
   include_role:
@@ -65,7 +70,6 @@
     mode: "755"
     owner: www-data
     group: www-data
-    recurse: yes
 
 - name: Set permissions for Nginx logs directory
   file:
@@ -131,7 +135,7 @@
     name: backup_property
   vars:
     property: museum
-    backup_paths: [ '{{ museum_docroot }}/{{ museum_domain }}' ]
+    backup_paths: [ '{{ museum_docroot }}' ]
 
 # This can be run when backup data is run at least once and available for restore
 # The restore role will only be run, when you pass --extra-vars "restore_data=true"
@@ -140,5 +144,5 @@
     name: restore_property
   vars:
     property: museum
-    backup_path: "{{ museum_docroot }}/{{ museum_domain }}"
+    backup_path: "{{ museum_docroot }}"
   when: restore_data is defined and restore_data
