@@ -3,5 +3,5 @@ property: "windows"
 windows_domain: "{{ property }}.{{ domain }}"
 windows_domain_alias: "{{ property }}.{{ internal_domain }}"
 
-windows_docroot: "{{ common_doc_root }}"
+windows_docroot: "{{ common_doc_root }}/{{ windows_domain }}"
 windows_config_file: "{{ property }}.{{ domain }}.conf"
