@@ -2,7 +2,7 @@
 
 rsync -qavz --timeout=600 --delete --delete-after \
 	--exclude include/jpgraph --exclude sqlite --exclude www/images/revcheck --exclude www/phd/docs \
-	{{ rsync_address }}::docweb {{ doc_docroot }}/{{ doc_domain }}
+	{{ rsync_address }}::docweb {{ doc_docroot }}
 
 /local/systems/update-docs-sources
 /local/systems/update-docs-translation-status

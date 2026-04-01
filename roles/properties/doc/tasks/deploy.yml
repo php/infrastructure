@@ -1,7 +1,7 @@
 - name: Create local directory to store doc content
   file:
     state: directory
-    dest: "{{ doc_docroot }}/{{ doc_domain }}"
+    dest: "{{ doc_docroot }}"
     mode: "755"
 
 - name: Create local 'parent' directory to store information
@@ -47,4 +47,4 @@
 - name: Install JPGraph
   shell: /local/systems/install-docweb-jpgraph
   args:
-    creates: "{{ doc_docroot }}/{{ doc_domain }}/include/jpgraph/VERSION"
+    creates: "{{ doc_docroot }}/include/jpgraph/VERSION"

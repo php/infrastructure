@@ -6,7 +6,7 @@ cd "{{ doc_phd_source_dir }}"
 
 php render.php \
     --docbook docs/phd-guide/phd-guide.xml \
-    --output '{{ doc_docroot }}/{{ doc_domain }}/www/phd/docs/' \
+    --output '{{ doc_docroot }}/www/phd/docs/' \
     --format 'bigxhtml' \
     --outputfilename 'index.html' \
     --verbose 0

@@ -3,12 +3,12 @@ property: "doc"
 doc_domain: "doc.{{ domain }}"
 doc_domain_alias: "doc.{{ internal_domain }}"
 
-doc_docroot: "{{ common_doc_root }}"
+doc_docroot: "{{ common_doc_root }}/{{ doc_domain }}"
 doc_config_file: "{{ property }}.{{ domain }}.conf"
 
 doc_box_dir: "{{ box_dir }}/{{ property }}"
 
-doc_sqlite_dir: "{{ doc_docroot }}/{{ doc_domain }}/www/sqlite"
+doc_sqlite_dir: "{{ doc_docroot }}/www/sqlite"
 
 doc_sources_dir: "{{ doc_box_dir }}/src"
 doc_lang_sources_dir: "{{ doc_sources_dir }}/phpdoc/langs"

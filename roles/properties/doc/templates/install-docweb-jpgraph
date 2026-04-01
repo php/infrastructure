@@ -4,7 +4,7 @@ set -e
 # Download JpGraph v4.4.2 and drop it where we need it
 
 TMPFILE=/tmp/download.$$
-DESTDIR="{{ doc_docroot }}/{{ doc_domain }}/include"
+DESTDIR="{{ doc_docroot }}/include"
 
 wget -O ${TMPFILE} 'https://jpgraph.net/download/download.php?p=57'
 
