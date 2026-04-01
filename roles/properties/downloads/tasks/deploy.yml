@@ -1,7 +1,7 @@
 - name: Create local directory to store downloads content
   file:
     state: directory
-    dest: "{{ downloads_docroot }}/{{ downloads_domain }}"
+    dest: "{{ downloads_docroot }}"
     mode: "755"
 
 - name: Ensure Windows build temp directories exist
@@ -21,7 +21,7 @@
   file:
     state: directory
     dest: "{{ php_sdk_dir }}"
-    mode: "700"
+    mode: "755"
     owner: windows
 
 - name: Copy scripts to the server

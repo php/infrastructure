@@ -3,7 +3,7 @@ property: "downloads"
 downloads_domain: "downloads.php.net"
 downloads_domain_alias: "downloads.internal.php.net"
 
-downloads_docroot: "{{ common_doc_root }}"
+downloads_docroot: "{{ common_doc_root }}/{{ downloads_domain }}"
 downloads_config_file: "{{ property }}.{{ domain }}.conf"
 
 downloads_home_dir: /home
