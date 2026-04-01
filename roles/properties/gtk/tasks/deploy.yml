@@ -1,7 +1,7 @@
 - name: Create local directory to store gtk content
   file:
     state: directory
-    dest: "{{ talks_docroot }}"
+    dest: "{{ gtk_docroot }}"
     mode: "755"
 
 - name: Copy update-gtk script to the server
