@@ -1,7 +1,7 @@
 - name: Create local directory to store peclweb content
   file:
     state: directory
-    dest: "{{ pecl_docroot }}/"
+    dest: "{{ pecl_docroot }}/public_html"
     mode: "755"
 
 - name: Create local 'parent' directory to store information
