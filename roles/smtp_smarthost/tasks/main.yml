@@ -1,5 +1,10 @@
 # This role sets up the smarthost for emailing emails through the central SMTP server
 
+- name: Install Exim4
+  apt:
+    name: exim4
+    state: present
+
 - name: Add Exim configuration file
   template:
     src: templates/update-exim4.conf.conf
