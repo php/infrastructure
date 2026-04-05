@@ -2,3 +2,5 @@
 .DS_Store
 local.ansible.cfg
 *.sw?
+inventory/local
+etc/ssh_config_local
