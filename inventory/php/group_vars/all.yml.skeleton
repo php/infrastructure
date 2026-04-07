@@ -1,0 +1,51 @@
+# This file lists all the secrets that the playbooks use in their encrypted
+# Ansible vault inventory/php/group_vars/all.yml
+
+# Token for the wiki to fetch auth information from master
+# sha1() counterpart in web-main/public/fetch/cvsauth.php
+wiki_token: 
+
+# Downloads server auth and drop directory
+auth_token: 
+
+# Token for systems to retrieve user information from main.php.net
+# md5() counter part in web-main/public/fetch/allusers.php
+main_user_token: 
+# ...
+main_user_notes_token: 
+
+# Configuration for GitHub API, to be used with web-main/manage/github.php
+github_client_id: 
+github_client_secret: 
+
+# Token for the bugs system to fetch auth information from master
+# sha1() counterpart in web-main/public/fetch/cvsauth.php
+bugs_auth_token: 
+
+# Token to fetch the username and email address information on php-smtp4 from master
+# sha1() counterpart in web-main/public/fetch/email-aliases.php
+email_aliases_fetch_token: 
+
+bugs_password_salt: 
+
+# Salt that Matomo/analytics uses
+matomo_salt: 
+
+github_secret: 
+bugs_magic_cookie: 
+flickr_api_token: 
+
+# OhDearHealthChecks
+ohdear_secret: 
+
+# Backups
+restic_password: 
+DO_bucket_name: 
+DO_bucket_url: 
+# access-key-all-
+DO_secret_key: 
+DO_access_key: 
+
+gh_token: 
+
+db_root_password: 
