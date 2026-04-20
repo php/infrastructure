@@ -45,7 +45,7 @@ Following are the list of all the scripts used in the Systems repository and the
 | qa/users | [users](https://github.com/php/systems/blob/master/qa/users)                                                             | - |
 | rsync.php.net/README.md             | [README.md](https://github.com/php/systems/blob/master/rsync.php.net/README.md)         | - |
 | rsync.php.net/cronjobs.root         | [cronjobs.root](https://github.com/php/systems/blob/master/rsync.php.net/cronjobs.root) | [roles/properties/rsync/tasks/main.yml#L46-74](https://github.com/neighbourhoodie/stf-php-ansible/blob/main/roles/properties/rsync/tasks/main.yml#L46-74) |
-| rsync.php.net/rsynd.conf            | [rsynd.conf](https://github.com/php/systems/blob/master/rsync.php.net/rsynd.conf)       | [roles/properties/rsync/templates/rsynd.conf](https://github.com/neighbourhoodie/stf-php-ansible/blob/main/roles/properties/rsync/templates/rsynd.conf) |
+| rsync.php.net/rsyncd.conf           | [rsyncd.conf](https://github.com/php/systems/blob/master/rsync.php.net/rsyncd.conf)     | [roles/properties/rsync/templates/rsyncd.conf](https://github.com/neighbourhoodie/stf-php-ansible/blob/main/roles/properties/rsync/templates/rsyncd.conf) |
 | shared-config/20-sudo-nopassword    | [20-sudo-nopassword](https://github.com/php/systems/blob/master/shared-config/20-sudo-nopassword) | [initialize.yml#L128](https://github.com/neighbourhoodie/stf-php-ansible/blob/main/initialize.yml#L128) |
 | shared-config/iptables.conf         | [iptables.conf](https://github.com/php/systems/blob/master/shared-config/iptables.conf) | - |
 | svn2/apache2/conf-available/remote-ip-log.conf    | [remote-ip-log.conf](https://github.com/php/systems/blob/master/svn2/apache2/conf-available/remote-ip-log.conf)   | - |
