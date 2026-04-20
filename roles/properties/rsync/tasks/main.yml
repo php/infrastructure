@@ -45,7 +45,7 @@
 - name: Create rsyncd configuration file
   template:
     dest: /etc/rsyncd.conf
-    src: templates/rsynd.conf
+    src: templates/rsyncd.conf
 
 - name: Place logrotate configuration file for rsyncd
   template:
