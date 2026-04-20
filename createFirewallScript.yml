@@ -1,0 +1,20 @@
+- hosts:
+  - service
+  - rsync
+
+  become: yes
+  become_user: root
+
+  tasks:
+  - name: Install ufw and tools
+    apt:
+      name:
+      - ufw
+      - jq
+      state: present
+      update_cache: yes
+
+  - name: Create firewall script
+    template:
+      dest: "/local/systems/firewall.sh"
+      src: "roles/firewall/templates/update-firewall.sh"
