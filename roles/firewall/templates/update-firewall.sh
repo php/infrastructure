@@ -15,7 +15,7 @@ function safe_download() {
     fi
 }
 
-ufw reset
+ufw --force reset
 
 # Allow access to services only through the public ip of the jumphosts
 {% for jumphost in groups['jumphost'] %}

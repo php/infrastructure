@@ -11,6 +11,8 @@
       name:
       - ufw
       - jq
+      - curl
+      - xxd
       state: present
       update_cache: yes
 
@@ -18,3 +20,4 @@
     template:
       dest: "/local/systems/firewall.sh"
       src: "roles/firewall/templates/update-firewall.sh"
+      mode: '755'
