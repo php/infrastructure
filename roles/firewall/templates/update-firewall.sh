@@ -78,7 +78,7 @@ done
 {% if inventory_hostname in groups['rsync'] %}
 # Allow access to rsync from all services
 {% for service_host in groups['service'] %}
-ufw allow proto tcp from {{ hostvars[service_host].ansible_facts['eth1'].ipv4.address }} to any port 873
+ufw allow proto tcp from {{ hostvars[service_host].ansible_facts[hostvars[service_host].private_interface | default("eth1")].ipv4.address }} to any port 873
 {% endfor %}
 
 # Allow rsync from approved hosts
