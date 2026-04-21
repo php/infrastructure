@@ -1,15 +1,11 @@
 property: "wiki"
 
 wiki_domain: "{{ property }}.{{ domain }}"
-wiki_domain_alias: "{{ property }}.{{ internal_domain }}"
+wiki_domain_alias: "*.{{ property }}.{{ internal_domain }} {{ property }}.{{ internal_domain }}"
 
 wiki_docroot: "{{ common_doc_root }}/{{ wiki_domain }}"
 wiki_config_file: "{{ property }}.{{ domain }}.conf"
 
 wiki_data_dir: "{{ box_dir }}/wiki-data"
 
-backup_dir: /local/backups
 backup_paths: [ "{{ wiki_data_dir }}" ]
-
-# Restore backup in local restore directory
-restore_dir: /local/restore

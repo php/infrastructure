@@ -1,0 +1,62 @@
+#!/bin/sh
+
+cd {{ backup_dir }}
+
+# Redirect all output to the restore.log
+DOW=`date +%w`
+exec > "/local/systems/restore-{{ property }}-${DOW}.log" 2>&1
+
+echo "[$(date)] Starting restore process..."
+
+# Environment Variables
+export AWS_ACCESS_KEY_ID="{{ DO_access_key }}"
+export AWS_SECRET_ACCESS_KEY="{{ DO_secret_key }}"
+export RESTIC_PASSWORD="{{ restic_password }}"
+
+# Do restores of databases (assume that root can always read them)
+{% if backup_dbs is defined() %}
+{% for backup_db in backup_dbs %}
+
+    # restore database {{ backup_db }}
+    mysqldump -u root "{{ backup_db }}" > "/local/{{ restore_db }}.sql"
+
+    restic -r s3:{{ DO_bucket_url }}/{{ DO_bucket_name }}/{{ property }} restore latest -t "{{ restore_dir }}"
+    exit_status=$?
+    echo "restic status: " $exit_status
+
+    if [ $exit_status -eq 0 ]; then
+      echo "[$(date)] restic upload completed."
+
+    else
+      echo "[$(date)] Could not upload data."
+    fi
+
+    # Removing temporary data
+    rm "/local/{{ restore_db }}.sql"
+
+{% endfor %}
+{% endif %}
+
+# Do restores of directories
+{% if backup_paths is defined() %}
+{% for backup_path in backup_paths %}
+
+    # restore path {{ backup_path }}
+    restic -r s3:{{ DO_bucket_url }}/{{ DO_bucket_name }}/{{ property }} restore latest -t "{{ restore_dir }}"
+    exit_status=$?
+    echo "restic status: " $exit_status
+
+    if [ $exit_status -eq 0 ]; then
+      echo "[$(date)] restic download completed."
+
+      cp -A "{{ restore_dir }}/{{ backup_path }}" "{{ backup_path }}"
+      rm -rf "{{ restore_dir }}"
+
+    else
+      echo "[$(date)] Could not download data."
+    fi
+
+{% endfor %}
+{% endif %}
+
+echo "[$(date)] Restore process finished successfully."

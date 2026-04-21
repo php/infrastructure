@@ -8,7 +8,7 @@ box_dir: "/local/this-box"
 jumphost: "{{ host | default('jump-ams-1.internal.php.net') }}"
 
 myra_hosts: [ "103.51.164.0/22", "185.85.3.0/24", "213.155.71.142/32", "213.61.215.48/29", "45.112.84.0/22", "45.91.156.0/22", "5.9.89.19/32", "80.90.0.0/20", "82.199.130.0/24", "82.199.157.0/24", "2001:920:198c::fefe/128", "2a01:4a0::/32", "2a01:4f8:162:1346::2/128", "2a02:cb43::/32", "2a02:cb44::/32", "2a02:cb45:101::/48", "2a02:cb46::/32", "2a02:cb47::/32" ]
-test_hosts: [ "86.163.232.227" ]
+test_hosts: [ "81.157.32.9" ]
 
 # Used for allowing connections on downloads to come in from in addition to the myra and test hosts
 pecl_hosts: [ "104.236.228.160", "157.245.79.146" ]
@@ -25,6 +25,10 @@ access_to_main_hosts:
 
 systems_email: "systems@{{ domain }}"
 master_email: "{{ systems_email }}"
+
+# Backups
+backup_dir: /local/backups
+restore_dir: /local/restore
 
 # Non property configuration
 bind_php_net_zone_file: "/etc/bind/db.{{ domain }}"

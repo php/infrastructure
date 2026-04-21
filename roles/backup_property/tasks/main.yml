@@ -60,3 +60,9 @@
       AWS_ACCESS_KEY_ID="{{ DO_access_key }}" AWS_SECRET_ACCESS_KEY="{{ DO_secret_key }}" RESTIC_PASSWORD="{{ restic_password }}" restic -r s3:{{ DO_bucket_url }}/{{ DO_bucket_name }}/{{ property }} forget --keep-daily 7 --keep-weekly 4 --keep-monthly 6 --prune
     state: absent
     special_time: daily
+
+- name: Create restore script
+  template:
+    src: "{{ role_path }}/templates/restore-property"
+    dest: "/local/systems/restore-{{ property }}"
+    mode: "755"

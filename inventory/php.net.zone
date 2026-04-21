@@ -220,6 +220,9 @@ pecl.internal         IN CNAME service3-ams.internal.php.net.
 service4-ams.internal IN A 159.223.1.255
 analytics.internal    IN CNAME service4-ams.internal.php.net.
 
+service5-ams.internal IN A 178.62.235.110
+new.wiki.internal     IN CNAME service5-ams.internal.php.net.
+
 ; Misc stuff
 localhost		IN A 127.0.0.1
 

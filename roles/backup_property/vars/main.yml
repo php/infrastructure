@@ -1,4 +1,2 @@
 # Setting backup name
-
-backup_dir: /local/backups
 backup_name: "{{ property }}"
