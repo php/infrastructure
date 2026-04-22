@@ -1,6 +1,6 @@
 name: Request Release Manager Access
 description: Use this template to request access for Release Managers
-title: Release Manager Access for: <your name>
+title: "Release Manager Access for: {your name}"
 labels: ['access']
 assignees: []
 
