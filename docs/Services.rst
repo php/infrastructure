@@ -10,10 +10,10 @@ Digital Ocean.
 
 Beyond the php.net Services, there are also two jump hosts, to provide SSH
 access to each server, and an rsync service to distribute code. You cannot SSH
-into a server directly. See the `Access.rst`_ document on how to get access to
+into a server directly. See the `<ServerAccess.rst>`_ document on how to get access to
 servers.
 
-Our inventory is at `inventory/php/hosts`, where you can see on which Digital
+Our inventory is at ``inventory/php/hosts``, where you can see on which Digital
 Ocean server each Service runs.
 
 Overview
