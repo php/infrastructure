@@ -4,9 +4,8 @@ about: Use this template to request access for Release Managers
 title: Request Release Manager Access
 labels: ''
 assignees: ''
-
----
-
+type: bug
+body:
 - type: input
   attributes:
     label: Preferred Unix Username (will also become part of location to download RCs, such as https://downloads.php.net/~derick/)
