@@ -1,8 +1,7 @@
 name: Request Release Manager Access
-about: Use this template to request access for Release Managers
 title: Request Release Manager Access
-labels: ''
-assignees: ''
+labels: ['Access']
+assignees: []
 
 body:
 - type: input
