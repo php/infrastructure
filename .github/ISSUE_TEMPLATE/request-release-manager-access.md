@@ -1,0 +1,21 @@
+---
+name: Request Release Manager Access
+about: Use this template to request access for Release Managers
+title: Request Release Manager Access
+labels: ''
+assignees: ''
+
+---
+
+- type: input
+  attributes:
+    label: Preferred Unix Username (will also become part of location to download RCs, such as https://downloads.php.net/~derick/)
+- type: textarea
+  attributes:
+    label: An SSH public key, preferably a new unique one for PHP systems and projects and in ssh-ed25519 format
+- type: input
+  attributes:
+    label: Your @php.net email address, which preferably does not forward to a Gmail address.
+- type: input
+  attributes:
+    label: Your GitHub account name, so that your membership to the release managers group may be approved
