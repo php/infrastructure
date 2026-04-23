@@ -2,6 +2,7 @@
 
 # Firewall for {{ inventory_hostname }}
 
+{% if inventory_hostname in groups['service'] %}
 function safe_download() {
     URL=$1
     DEST=$2
@@ -17,6 +18,7 @@ function safe_download() {
 
 TEMP_REMOTE_PROXY_LIST_FILENAME=/tmp/temporary-remote-proxy-list`xxd -l16 -ps /dev/urandom`
 echo "# This list contains IP addresses for the CDN end points" > $TEMP_REMOTE_PROXY_LIST_FILENAME
+{% endif %}
 
 ufw --force reset
 
@@ -106,7 +108,9 @@ ufw deny "WWW Secure"
 ufw default deny
 ufw enable
 
+{% if inventory_hostname in groups['service'] %}
 # Copy new RemoteIP list to Apache Configuration Directory
 mv $TEMP_REMOTE_PROXY_LIST_FILENAME "{{ remote_ip_trusted_proxy_list }}"
+{% endif %}
 
 systemctl reload apache2
