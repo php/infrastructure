@@ -112,5 +112,9 @@ ufw enable
 # Copy new RemoteIP list to Apache Configuration Directory
 mv $TEMP_REMOTE_PROXY_LIST_FILENAME "{{ remote_ip_trusted_proxy_list }}"
 
+{% if inventory_hostname == 'service0' %}
+systemctl restart nginx
+{% else %}
 systemctl reload apache2
+{% endif %}
 {% endif %}
