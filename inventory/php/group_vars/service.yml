@@ -3,6 +3,7 @@ domain: "php.net"
 internal_domain: "internal.php.net"
 common_doc_root: "/var/www/sites"
 box_dir: "/local/this-box"
+remote_ip_trusted_proxy_list: "/local/this-box/remoteip-cdn-nodes-list.conf"
 
 # Service Hosts
 jumphost: "{{ host | default('jump-ams-1.internal.php.net') }}"

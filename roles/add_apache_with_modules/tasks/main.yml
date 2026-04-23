@@ -31,9 +31,17 @@
 
 - name: Add remoteip logging config
   template:
-    src: templates/{{ mod_remoteip_config_file }}
+    src: "templates/{{ mod_remoteip_config_file }}"
     dest: "/etc/apache2/conf-enabled/{{ mod_remoteip_config_file }}"
   notify: reload apache
+
+- name: Create (empty) placeholder file for trusted proxy list
+  file:
+    path: "{{ remote_ip_trusted_proxy_list }}"
+    state: touch
+    owner: root
+    group: root
+    mode: '0644'
 
 - name: Add opcache and other local PHP settings
   template:
