@@ -89,3 +89,11 @@ Getting the Property on the VM
 Run (again, you can't run this in test mode, due to playbook file requirements)::
 
 	ansible-playbook --diff initService{type-of-service}.yml --limit service{x}
+
+Install Monitoring Service
+--------------------------
+
+Each server needs to have the `OhDear monitoring <Monitoring.rst>`_ set up.
+You can install this by running the following playbook::
+
+	ansible-playbook --diff installOhDear.yml --limit service{5}
