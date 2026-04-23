@@ -24,10 +24,10 @@ jump-ams-1 jumphost         192.168.42.50
 jump-sfo-1 jumphost         192.168.42.51
 rsync0-ams rsync            192.168.42.52
 service0   museum           192.168.42.53
-service1   wiki             192.168.42.54
 service2   static sites     192.168.42.55
 service3   dynamic sites    192.168.42.56
 service4   analytics        192.168.42.57
+service5   wiki             192.168.42.58
 ========== ================ ================
 
 Ensure all VMs have root SSH access enabled before starting. You must be able
@@ -87,7 +87,7 @@ here will not be committed.
     service0 ansible_host=192.168.42.53
 
     [wiki]
-    service1 ansible_host=192.168.42.54
+    service5 ansible_host=192.168.42.58
 
     [static]
     service2 ansible_host=192.168.42.55
@@ -316,10 +316,10 @@ jumphost0  initialize.yml            SSH + Google Authenticator
 jumphost1  initialize.yml            SSH + Google Authenticator
 rsync0     initServiceRsync.yml      rsync daemon, git mirrors
 service0   initServiceMuseum.yml     nginx + museum.php.net
-service1   initServiceWiki.yml       Apache + wiki.php.net (DokuWiki)
 service2   initServiceStaticSites.yml Apache + www, doc, downloads, gtk, people, qa, shared, talks, windows
 service3   initServiceDynamicSites.yml Apache + MariaDB + main, bugs, pecl
 service4   initServiceAnalytics.yml  Apache + MariaDB + analytics (Matomo)
+service5   initServiceWiki.yml       Apache + wiki.php.net (DokuWiki)
 ========== ========================= =================================
 
 All playbooks are idempotent — you can safely re-run them at any time.
