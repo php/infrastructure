@@ -49,7 +49,7 @@ export RESTIC_PASSWORD="{{ restic_password }}"
     if [ $exit_status -eq 0 ]; then
       echo "[$(date)] restic download completed."
 
-      cp -A "{{ restore_dir }}/{{ backup_path }}" "{{ backup_path }}"
+      cp -a "{{ restore_dir }}{{ backup_path }}/"* "{{ backup_path }}"
       rm -rf "{{ restore_dir }}"
 
     else
