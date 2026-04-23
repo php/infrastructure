@@ -5,13 +5,38 @@
 # the jump hosts.
 
 - hosts:
+  - rsync
+
+  become: yes
+  become_user: root
+  gather_facts: true
+
+  tasks:
+  - name: Gather facts for service hosts
+    setup:
+      gather_subset:
+        - default_ipv4
+    delegate_to: "{{ item }}"
+    delegate_facts: true
+    loop: "{{ groups['service'] }}"
+
+- hosts:
   - service
   - rsync
 
   become: yes
   become_user: root
+  gather_facts: true
 
   tasks:
+  - name: Gather facts for jumphosts
+    setup:
+      gather_subset:
+        - default_ipv4
+    delegate_to: "{{ item }}"
+    delegate_facts: true
+    loop: "{{ groups['jumphost'] }}"
+
   - name: Install ufw and tools
     apt:
       name:
