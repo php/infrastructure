@@ -38,6 +38,10 @@ flickr_api_token:
 # OhDearHealthChecks
 ohdear_secret: 
 
+# TrustedIP Proxy List location (doesn't need to be encrypted, but only this
+# file is visible for service *and* rsync hosts)
+remote_ip_trusted_proxy_list: "/local/this-box/remoteip-cdn-nodes-list.conf"
+
 # Backups
 restic_password: 
 DO_bucket_name: 
