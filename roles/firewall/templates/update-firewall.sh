@@ -111,6 +111,6 @@ ufw enable
 {% if inventory_hostname in groups['service'] %}
 # Copy new RemoteIP list to Apache Configuration Directory
 mv $TEMP_REMOTE_PROXY_LIST_FILENAME "{{ remote_ip_trusted_proxy_list }}"
-{% endif %}
 
 systemctl reload apache2
+{% endif %}
