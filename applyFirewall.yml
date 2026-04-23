@@ -12,192 +12,29 @@
   become_user: root
 
   tasks:
-  - name: Install ufw
+  - name: Install ufw and tools
     apt:
       name:
       - ufw
+      - jq
+      - curl
+      - xxd
       state: present
       update_cache: yes
 
-  - name: Reset UFW
-    ufw:
-      state: reset
+  - name: Create firewall script
+    template:
+      dest: /local/systems/firewall.sh
+      src: roles/firewall/templates/update-firewall.sh
+      mode: '755'
 
-  # Gather jump host names so we can enable port 22 from them
-  - name: Gather facts for all jumphosts
-    setup:
-      gather_subset:
-        - default_ipv4
-    delegate_to: "{{ item }}"
-    delegate_facts: true
-    loop: "{{ groups['jumphost'] }}"
+  - name: Set up daily cron to refresh the firewall rules
+    cron:
+      name: "Daily firewall refresh"
+      job: /local/systems/firewall.sh
+      special_time: daily
+      state: present
 
-  # Add UFW firewall configuration so that the services are only accessible through the public ip of the jumphosts
-  - name: Allow ssh only from jumphosts
-    ufw:
-      rule: allow
-      from_ip: "{{ hostvars[item].ansible_facts['default_ipv4'].address }}"
-      port: 22
-    loop: "{{ groups['jumphost'] }}"
-
-  - name: Block port 80 access
-    ufw:
-      rule: deny
-      proto: tcp
-      port: 80
-
-- hosts:
-  - service
-
-  become: yes
-  become_user: root
-
-  strategy: free
-
-  tasks:
-  - name: Allow access to port 443 from Myra hosts
-    ufw:
-      rule: allow
-      port: 443
-      proto: tcp
-      src: "{{ item }}"
-    loop: "{{ myra_hosts }}"
-
-  - name: Allow access to port 443 from test hosts
-    ufw:
-      rule: allow
-      port: 443
-      proto: tcp
-      src: "{{ item }}"
-    loop: "{{ test_hosts }}"
-
-- hosts:
-  - static
-
-  become: yes
-  become_user: root
-
-  tasks:
-  - name: Allow access to port 443 from PECL host(s)
-    ufw:
-      rule: allow
-      port: 443
-      proto: tcp
-      src: "{{ item }}"
-    loop: "{{ pecl_hosts }}"
-
-- hosts:
-  - dynamic
-
-  become: yes
-  become_user: root
-
-  tasks:
-  - name: Allow access TCP port 53 from EasyDNS transfer machine
-    ufw:
-      rule: allow
-      port: 53
-      proto: tcp
-      src: "{{ item }}"
-    loop: "{{ easy_dns_hosts }}"
-
-  - name: Allow access TCP port 443 from servers that need to post to main
-    ufw:
-      rule: allow
-      port: 443
-      proto: tcp
-      src: "{{ item }}"
-    loop: "{{ access_to_main_hosts }}"
-
-# Import GitHub APIs for hooks, so that we open up webhooks to main.internal.php.net
-- hosts:
-  - dynamic
-
-  become: yes
-  become_user: root
-
-  gather_facts: false
-
-  tasks:
-
-    - name: Query GitHub Meta API
-      uri:
-        url: https://api.github.com/meta
-        return_content: true
-      register: json_data
-
-    - name: Set Backup IPs for Hooks
-      set_fact:
-        json_data:
-          json:
-            hooks:
-            - "140.82.112.0/20"
-      when: json_data is defined and json_data.skipped is defined and json_data.skipped == true
-
-    - name: Transform JSON to formatted list
-      set_fact:
-        formatted_list: "{{ json_data.json.hooks }}"
-
-    - name: Allow access to TCP port 443 from GitHub hooks IPs
-      ufw:
-        rule: allow
-        port: 443
-        proto: tcp
-        src: "{{ item }}"
-      loop: "{{ formatted_list }}"
-
-- hosts:
-  - rsync
-
-  become: yes
-  become_user: root
-
-  tasks:
-
-  - name: Gather facts for all services
-    setup:
-      gather_subset:
-        - default_ipv4
-    delegate_to: "{{ item }}"
-    delegate_facts: true
-    loop: "{{ groups['service'] }}"
-
-  # Add UFW firewall configuration so that rsync is only available to our services, and approved hosts
-  - name: Allow rsync from services
-    ufw:
-      rule: allow
-      from_ip: "{{ hostvars[item].ansible_facts['eth1'].ipv4.address }}"
-      port: 873
-    loop: "{{ groups['service'] }}"
-
-  - name: Allow rsync from approved hosts
-    ufw:
-      rule: allow
-      from_ip: "{{ item }}"
-      port: 873
-    loop: "{{ rsync_hosts }}"
-
-- hosts:
-  - service
-  - rsync
-
-  become: yes
-  become_user: root
-
-  tasks:
-  - name: Allow health check to port 8991
-    ufw:
-      rule: allow
-      port: 8991
-      proto: tcp
-
-  - name: Block port 443 access for elsewhere
-    ufw:
-      rule: deny
-      port: 443
-      proto: tcp
-
-  - name: Enable UFW and deny incoming requests
-    ufw:
-      state: enabled
-      policy: deny
+  - name: Run firewall refresh script
+    command:
+      cmd: /local/systems/firewall.sh
