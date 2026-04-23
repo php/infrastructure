@@ -16,7 +16,6 @@ analytics
 service0 ansible_host=service0-ams.internal.php.net
 
 [wiki]
-service1 ansible_host=service1-ams.internal.php.net
 service5 ansible_host=service5-ams.internal.php.net
 
 [static]

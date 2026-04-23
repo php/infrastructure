@@ -107,7 +107,7 @@ pres2			IN CNAME pres2-php-net.ax4z.com.
 
 ; wiki is used for project documentation and RFCs
 ; wiki.internal is name of host, see Digital Ocean section
-wiki			IN CNAME wiki-php-net.ax4z.com.
+wiki			IN CNAME wiki-internal-php-net.b-cdn.net.
 
 ; old windows.php.net website, which besides robots.txt now redirects to other locations (only)
 windows		IN CNAME windows-php-net.ax4z.com.
@@ -190,8 +190,8 @@ rsync0-ams.internal  IN A 104.248.198.138
 service0-ams.internal IN A 167.172.35.139
 museum.internal       IN CNAME service0-ams.internal.php.net.
 
+; unused, and replaced by service5
 service1-ams.internal IN A 165.22.201.73
-wiki.internal         IN CNAME service1-ams.internal.php.net.
 
 service2-ams.internal IN A 206.189.2.9
 doc.internal          IN CNAME service2-ams.internal.php.net.
@@ -222,6 +222,7 @@ analytics.internal    IN CNAME service4-ams.internal.php.net.
 
 service5-ams.internal IN A 178.62.235.110
 new.wiki.internal     IN CNAME service5-ams.internal.php.net.
+wiki.internal         IN CNAME service5-ams.internal.php.net.
 
 ; Misc stuff
 localhost		IN A 127.0.0.1
