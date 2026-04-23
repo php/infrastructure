@@ -2,6 +2,7 @@
 
 # Firewall for {{ inventory_hostname }}
 
+{% if inventory_hostname in groups['service'] %}
 function safe_download() {
     URL=$1
     DEST=$2
@@ -15,6 +16,10 @@ function safe_download() {
     fi
 }
 
+TEMP_REMOTE_PROXY_LIST_FILENAME=/tmp/temporary-remote-proxy-list`xxd -l16 -ps /dev/urandom`
+echo "# This list contains IP addresses for the CDN end points" > $TEMP_REMOTE_PROXY_LIST_FILENAME
+{% endif %}
+
 ufw --force reset
 
 # Allow access to services only through the public ip of the jumphosts
@@ -27,19 +32,25 @@ ufw deny WWW
 
 {% if inventory_hostname in groups['service'] %}
 # Allow access to port 443 from Myra hosts
+echo "# Myra Nodes:" >> $TEMP_REMOTE_PROXY_LIST_FILENAME
 {% for host in myra_hosts %}
 ufw allow from {{ host }} to any app "WWW Secure"
+echo "{{ host }}" >> $TEMP_REMOTE_PROXY_LIST_FILENAME
 {% endfor %}
 
 # Allow access to port 443 from Bunny hosts
+echo "# Bunny Nodes (IPv4):" >> $TEMP_REMOTE_PROXY_LIST_FILENAME
 safe_download https://bunnycdn.com/api/system/edgeserverlist /local/systems/bunny-edgeserverlist.json
 for ip in `cat /local/systems/bunny-edgeserverlist.json | jq -a '.[]' | sed 's/"//g'`; do
     ufw allow from $ip to any app "WWW Secure"
+    echo $ip >> $TEMP_REMOTE_PROXY_LIST_FILENAME
 done
 
+echo "# Bunny Nodes (IPv6):" >> $TEMP_REMOTE_PROXY_LIST_FILENAME
 safe_download https://bunnycdn.com/api/system/edgeserverlist/IPv6 /local/systems/bunny-edgeserverlist-ipv6.json
 for ip in `cat /local/systems/bunny-edgeserverlist-ipv6.json | jq -a '.[]' | sed 's/"//g'`; do
     ufw allow from $ip to any app "WWW Secure"
+    echo $ip >> $TEMP_REMOTE_PROXY_LIST_FILENAME
 done
 
 # Allow access to port 443 from test hosts
@@ -96,3 +107,10 @@ ufw deny "WWW Secure"
 # Enable UFW and deny incoming requests
 ufw default deny
 ufw enable
+
+{% if inventory_hostname in groups['service'] %}
+# Copy new RemoteIP list to Apache Configuration Directory
+mv $TEMP_REMOTE_PROXY_LIST_FILENAME "{{ remote_ip_trusted_proxy_list }}"
+
+systemctl reload apache2
+{% endif %}

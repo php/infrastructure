@@ -1,6 +1,6 @@
 # Hosts that also allowed to do rsync from us
 rsync_hosts:
-- '{{ hostvars["rsync0"].ansible_facts[hostvars[service_host].private_interface | default("eth1")].ipv4.network }}/{{ hostvars["rsync0"].ansible_facts[hostvars[service_host].private_interface | default("eth1")].ipv4.prefix }}' # our private network
+- '{{ hostvars["rsync0"].ansible_facts[hostvars["rsync0"].private_interface | default("eth1")].ipv4.network }}/{{ hostvars["rsync0"].ansible_facts[hostvars["rsync0"].private_interface | default("eth1")].ipv4.prefix }}' # our private network
 - "45.112.84.4"     # php-web4.php.net
 - "94.142.242.175"  # php.streamservice.nl
 - "104.236.36.140"  # lists.php.net
