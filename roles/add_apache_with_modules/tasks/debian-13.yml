@@ -1,0 +1,32 @@
+- name: Install Apache with mod-php, php and openssl
+  apt:
+    name:
+      - apache2
+      - libapache2-mod-php8.4
+      - apache2-utils
+      - php8.4
+      - php8.4-bz2
+      - php8.4-intl
+      - php8.4-mbstring
+      - php8.4-xml
+    state: present
+    update_cache: yes
+
+- name: Enable modules in Apache
+  command: a2enmod {{ item }}
+  args:
+    creates: /etc/apache2/mods-enabled/{{ item }}.load
+  loop:
+    - env
+    - ssl
+    - php8.4
+    - headers
+    - rewrite
+    - remoteip
+  notify: reload apache
+
+- name: Add opcache and other local PHP settings
+  template:
+    src: templates/90-local-settings.ini
+    dest: /etc/php/8.4/apache2/conf.d/90-local-settings.ini
+  notify: reload apache
