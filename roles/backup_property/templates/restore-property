@@ -18,7 +18,7 @@ export RESTIC_PASSWORD="{{ restic_password }}"
 {% for backup_db in backup_dbs %}
 
     # restore database {{ backup_db }}
-    mysqldump -u root "{{ backup_db }}" > "/local/{{ restore_db }}.sql"
+    mysqldump -u root "{{ backup_db }}" > "/local/{{ backup_db }}.sql"
 
     restic -r s3:{{ DO_bucket_url }}/{{ DO_bucket_name }}/{{ property }} restore latest -t "{{ restore_dir }}"
     exit_status=$?
@@ -32,7 +32,7 @@ export RESTIC_PASSWORD="{{ restic_password }}"
     fi
 
     # Removing temporary data
-    rm "/local/{{ restore_db }}.sql"
+    rm "/local/{{ backup_db }}.sql"
 
 {% endfor %}
 {% endif %}
