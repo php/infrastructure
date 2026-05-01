@@ -26,4 +26,4 @@
   service:
     name: ohdear-health-check.service
     state: restarted
-    enabled: yes
+    enabled: true

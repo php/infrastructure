@@ -7,3 +7,6 @@ Type=exec
 ExecStart=/local/systems/bin/ohdear-system-health
 WorkingDirectory=/local/systems/bin
 Restart=always
+
+[Install]
+WantedBy=multi-user.target
