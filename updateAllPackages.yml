@@ -19,6 +19,10 @@
     - name: Upgrade all packages on servers
       apt: upgrade=dist force_apt_get=yes
 
+    - name: Check if a reboot is needed on all servers
+      stat: path=/var/run/reboot-required get_checksum=no
+      register: reboot_required_file
+
 - hosts:
   - service
   - rsync
@@ -27,10 +31,6 @@
   become_user: root
 
   tasks:
-    - name: Check if a reboot is needed on all servers
-      stat: path=/var/run/reboot-required get_checksum=no
-      register: reboot_required_file
-
     - name: Reboot the box if kernel updated
       reboot:
         msg: "Reboot initiated by Ansible for kernel updates"
