@@ -224,9 +224,6 @@ wiki.internal         IN CNAME service5-ams.internal.php.net.
 
 ; Service 6: Bugs, Main, and PECL (and DNS main)
 service6-ams.internal IN A 134.209.86.196
-new.bugs.internal     IN CNAME service6-ams.internal.php.net.
-new.main.internal     IN CNAME service6-ams.internal.php.net.
-new.pecl.internal     IN CNAME service6-ams.internal.php.net.
 bugs.internal         IN CNAME service6-ams.internal.php.net.
 main.internal         IN CNAME service6-ams.internal.php.net.
 pecl.internal         IN CNAME service6-ams.internal.php.net.
