@@ -2,7 +2,6 @@
 domain: "php.net"
 internal_domain: "internal.php.net"
 common_doc_root: "/var/www/sites"
-box_dir: "/local/this-box"
 
 # Service Hosts
 jumphost: "{{ host | default('jump-ams-1.internal.php.net') }}"

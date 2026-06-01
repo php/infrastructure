@@ -1,6 +1,3 @@
-# Common Definitions
-box_dir: "/local/this-box"
-
 # Hosts that also allowed to do rsync from us
 rsync_hosts:
 - '{{ hostvars["rsync0"].ansible_facts[hostvars["rsync0"].private_interface | default("eth1")].ipv4.network }}/{{ hostvars["rsync0"].ansible_facts[hostvars["rsync0"].private_interface | default("eth1")].ipv4.prefix }}' # our private network

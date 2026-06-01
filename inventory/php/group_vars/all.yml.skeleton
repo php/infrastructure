@@ -53,3 +53,8 @@ DO_access_key:
 gh_token: 
 
 db_root_password: 
+
+# Common Definitions
+# There is no benefit in encrypting this, but we need it here otherwise we need
+# to store it in multiple places.
+box_dir: "/local/this-box"
