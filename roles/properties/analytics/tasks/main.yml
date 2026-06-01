@@ -5,9 +5,6 @@
   apt:
     name:
     - php-pear
-    - php8.2-gd
-    - php8.2-mysql
-    - php8.2-xml
     - python3-pymysql
     state: present
     update_cache: yes

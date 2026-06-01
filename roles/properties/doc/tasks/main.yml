@@ -5,8 +5,6 @@
   apt:
     name:
     - git
-    - php8.2-gd
-    - php8.2-sqlite3
     state: present
     update_cache: yes
 

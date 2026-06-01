@@ -2,9 +2,6 @@
   apt:
     name:
     - git
-    - php8.2-cli
-    - php8.2-xml
-    - php8.2-sqlite3
     state: present
     update_cache: yes
 
