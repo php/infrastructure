@@ -1,7 +1,7 @@
 property: "main"
 
 main_domain: "{{ property }}.{{ domain }}"
-main_domain_alias: "{{ property }}.{{ internal_domain }}"
+main_domain_alias: "*.{{ property }}.{{ internal_domain }} {{ property }}.{{ internal_domain }}"
 
 main_docroot: "{{ common_doc_root }}/{{ main_domain }}"
 main_config_file: "{{ property }}.{{ domain }}.conf"

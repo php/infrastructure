@@ -1,14 +1,19 @@
 Setting Up a new VM
 ===================
 
+This procedure also contains information for upgrading/replacing an existing
+service VM.
+
 Droplet Creation
 ----------------
+
+Navigate to: https://cloud.digitalocean.com/droplets/new?i=fc045a&region=ams3&distroImage=debian-13-x64&distro=debian
 
 Datacenter region: Amsterdam 3
 OS: Debian (13 x64)
 Droplet: Basic (Shared CPU)
 CPU Options: Regular (SSD)
-Plan: From table able
+Plan: From table in `<OperationalVMs.rst>`_
 
 SSH Keys: Derick (PHP Servers) (but we need a new generic one: https://github.com/php/infrastructure/issues/21)
 
@@ -27,9 +32,14 @@ In ``inventory/php.net.zone``, add::
 	service{x}-ams.internal IN A {Public IPv4}
 	{property}.internal     IN CNAME service{x}-ams.internal.php.net.
 
-In ``inventory/php/hosts``, add under the right group::
+In ``inventory/php/hosts``, **add** under the right group::
 
 	service{x} ansible_host=service{x}-ams.internal.php.net
+
+If you're replacing a service, you need to remove the old one at a later
+stage.
+
+Also update the table in ``OperationalVMs.rst``.
 
 Update DNS
 ----------
@@ -46,6 +56,11 @@ Wait until they resolves through::
 
 	dig service{x}-ams.internal.php.net @dns1.easydns.com
 	dig {property}.internal.php.net @dns1.easydns.com
+
+*Note*: If you're adding a server for the ``dynamic`` group, then it will fail
+for the new host as it does not have a DNS entry yet. That's okay, and you
+should probably use ``--limit service{originalNr}`` to only update the DNS on
+the already existing server.
 
 Configure Machine for Access
 ----------------------------

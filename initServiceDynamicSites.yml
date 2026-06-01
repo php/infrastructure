@@ -6,8 +6,17 @@
 
   become: yes
   become_user: root
+  gather_facts: true
 
   pre_tasks:
+    - name: Gather facts for rsync server
+      setup:
+        gather_subset:
+          - default_ipv4
+      delegate_to: "{{ item }}"
+      delegate_facts: true
+      loop: "{{ groups['rsync'] }}"
+
     - name: Install common software and configuration
       include_role:
         name: install_common_software

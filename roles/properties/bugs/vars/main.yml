@@ -1,7 +1,7 @@
 property: "bugs"
 
 bugs_domain: "{{ property }}.{{ domain }}"
-bugs_domain_alias: "{{ property }}.{{ internal_domain }}"
+bugs_domain_alias: "*.{{ property }}.{{ internal_domain }} {{ property }}.{{ internal_domain }}"
 
 bugs_docroot: "{{ common_doc_root }}/{{ bugs_domain }}"
 bugs_config_file: "{{ property }}.{{ domain }}.conf"

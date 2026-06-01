@@ -23,6 +23,7 @@ service2 ansible_host=service2-ams.internal.php.net
 
 [dynamic]
 service3 ansible_host=service3-ams.internal.php.net
+service6 ansible_host=service6-ams.internal.php.net
 
 [analytics]
 service4 ansible_host=service4-ams.internal.php.net
