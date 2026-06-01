@@ -69,9 +69,10 @@ This can only be run *once*.
 
 1. Turn off the SSH Jump Host Proxy for the new host, but keep the right key, in ``~/.ssh/config``::
 
-   Host service{x}-ams.internal.php.net
-       ProxyCommand None
-	   IdentityFile /home/derick/.ssh/phpservers-ed25519
+	Host service{x}-ams.internal.php.net
+		ProxyCommand None
+		User root
+		IdentityFile /home/derick/.ssh/phpservers-ed25519
 
 2. Comment out the ``[ssh_connection]`` section in ``ansible.cfg``
 
@@ -119,4 +120,4 @@ Install Monitoring Service
 Each server needs to have the `OhDear monitoring <Monitoring.rst>`_ set up.
 You can install this by running the following playbook::
 
-	ansible-playbook --diff installOhDear.yml --limit service{5}
+	ansible-playbook --diff installOhDear.yml --limit service{x}
