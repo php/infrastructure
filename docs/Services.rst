@@ -60,8 +60,11 @@ Handlers for reloading and restarting Apache, MariaDB, Nginx are located in
 Backups
 -------
 
-Backups are stored per-property in a DigitalOcean bucket. The contents are
-backed up with `restic <https://restic.readthedocs.io/en/stable/index.html>`_.
+Backups are stored per-property in a DigitalOcean "Spaces Object Storage"
+bucket: https://cloud.digitalocean.com/spaces/php-net-backup
+
+The contents are backed up with `restic
+<https://restic.readthedocs.io/en/stable/index.html>`_.
 
 The ``backup_property`` role must have the ``property`` variable that matches
 each property name. 
@@ -74,20 +77,27 @@ The last 7 days, 4 weeks, and 6 months of backups are kept.
 
 Backup tasks run as a cronjob.
 
+There are special backups, that are not updated by cron, and are run
+manually:
+
+- ``downloads-old-windows-archives``: contains old Windows binary downloads
+  for PHP 5, which are no longer available through
+  https://downloads.php.net/~windows/releases/archives/ due to space
+  constraints. The last minor version of each 5.x version is still available
+  there.
 
 Restore
 -------
 
-**Restore has not been implemented or tested yet**
+**Restore has only been implemented for bugs, main, pecl, and wiki**
 
 The restore process follows a similar structure to backup, providing a
 reliable way to recover data. When restoring, content is fetched from the
 backup folders on the DigitalOcean Bucket and returned to the appropriate
-locations.
+locations and databases.
 
-The restore tasks are skipped by default, and will only run if you specify
-``--extra-vars "restore_data=true"``.
-
+Restore tasks need to be run manually on each server with the
+``restore-{property}`` script inside the ``/local/systems`` directory.
 
 Rsync Service
 -------------
