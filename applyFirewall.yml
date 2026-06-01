@@ -47,6 +47,13 @@
       state: present
       update_cache: yes
 
+  - name: Create box dir to store firewall script's downloaded data
+    file:
+      state: directory
+      dest: "{{ box_dir }}"
+      mode: 0755
+      owner: "root"
+
   - name: Create firewall script
     template:
       dest: /local/systems/firewall.sh

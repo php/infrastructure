@@ -83,6 +83,14 @@ This can only be run *once*.
 
    This can not be run in test mode, as it needs to install ``ufw`` in the first step.
 
+Update Firewalls Everywhere Else
+--------------------------------
+
+Some services need to talk to other services, and for that firewalls have to
+be updated at times. Therefore, run::
+
+	ansible-playbook --diff applyFirewall.yml
+
 Getting the Property on the VM
 ------------------------------
 

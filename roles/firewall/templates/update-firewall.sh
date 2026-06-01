@@ -83,12 +83,16 @@ ufw allow from {{ host }} to any app "WWW Secure"
 {%   for host in pecl_hosts %}
 ufw allow from {{ host }} to any app "WWW Secure"
 {%   endfor %}
+# Allow access on 'static' to port 443 from all dynamic hosts (includes PECL, Bugs, and Main)
+{%   for service_host in groups['dynamic'] %}
+ufw allow from {{ hostvars[service_host].ansible_facts['default_ipv4'].address }} to any app "WWW Secure"
+{%   endfor %}
 {% endif %}
 
 {% if inventory_hostname in groups['dynamic'] %}
 # Allow access TCP port 53 from EasyDNS transfer machine
 {%   for host in easy_dns_hosts %}
-ufw allow proto tcp from {{ host }} to any app DNS
+ufw allow proto tcp from {{ host }} to any port 53
 {%   endfor %}
 
 # Allow access TCP port 443 from servers that need to post to main
@@ -101,7 +105,7 @@ ufw allow from {{ host }} to any app "WWW Secure"
 # GITHUB hooks access
 safe_download https://api.github.com/meta /local/systems/github-hooks.json
 for ip in `cat /local/systems/github-hooks.json | jq -a '.hooks[]' | sed 's/"//g'`; do
-    ufw allow from $IP to any app "WWW Secure"
+    ufw allow from $ip to any app "WWW Secure"
 done
 {% endif %}
 
@@ -125,11 +129,12 @@ ufw deny "WWW Secure"
 
 # Enable UFW and deny incoming requests
 ufw default deny
-ufw enable
+ufw --force enable
 
 {% if needs_trusted_ip_list %}
 # Copy new RemoteIP list to Apache Configuration Directory
 mv $TEMP_REMOTE_PROXY_LIST_FILENAME "{{ remote_ip_trusted_proxy_list }}"
-# And reload Apache
-systemctl reload apache2
+# And reload Apache, if it is installed (it's not if this is the first time
+# this runs when creating a new service VM).
+systemctl reload apache2 || true
 {% endif %}
