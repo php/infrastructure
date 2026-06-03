@@ -3,7 +3,7 @@ jumphost0 ansible_host=jump-ams-1.internal.php.net
 jumphost1 ansible_host=jump-sfo-1.internal.php.net
 
 [rsync]
-rsync0 ansible_host=rsync0-ams.internal.php.net
+rsync0 ansible_host=rsync0-ams.internal.php.net php_version=8.2
 
 [service:children]
 museum
@@ -13,16 +13,16 @@ dynamic
 analytics
 
 [museum]
-service0 ansible_host=service0-ams.internal.php.net
+service0 ansible_host=service0-ams.internal.php.net php_version=8.2
 
 [wiki]
-service5 ansible_host=service5-ams.internal.php.net
+service5 ansible_host=service5-ams.internal.php.net php_version=8.4
 
 [static]
-service2 ansible_host=service2-ams.internal.php.net
+service2 ansible_host=service2-ams.internal.php.net php_version=8.2
 
 [dynamic]
-service6 ansible_host=service6-ams.internal.php.net
+service6 ansible_host=service6-ams.internal.php.net php_version=8.4
 
 [analytics]
-service4 ansible_host=service4-ams.internal.php.net
+service4 ansible_host=service4-ams.internal.php.net php_version=8.2

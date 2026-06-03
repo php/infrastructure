@@ -1,14 +1,7 @@
-- name: Install Apache and PHP on Debian 12
-  ansible.builtin.include_tasks: debian-12.yml
+- name: Install Apache and PHP on Debian
+  ansible.builtin.include_tasks: debian.yml
   when:
     - ansible_facts['distribution'] == 'Debian'
-    - ansible_facts['distribution_major_version'] == '12'
-
-- name: Install Apache and PHP on Debian 13
-  ansible.builtin.include_tasks: debian-13.yml
-  when:
-    - ansible_facts['distribution'] == 'Debian'
-    - ansible_facts['distribution_major_version'] == '13'
 
 - name: Create the self-signed SSL Certificate
   include_role:

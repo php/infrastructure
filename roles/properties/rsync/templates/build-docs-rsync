@@ -16,7 +16,7 @@ assertUpToDateRepo() {
     git -C $BASE_DIR/$1 fetch origin && git -C $BASE_DIR/$1 reset --hard origin/master > /var/log/git-fetch-$i.log 2>&1
 }
 
-langs=`php8.2 -r 'include "{{ rsync_mirrors_dir }}/phpweb/include/languages.inc"; echo implode( " ", array_keys( $ACTIVE_ONLINE_LANGUAGES ) );'`;
+langs=`php{{ php_version }} -r 'include "{{ rsync_mirrors_dir }}/phpweb/include/languages.inc"; echo implode( " ", array_keys( $ACTIVE_ONLINE_LANGUAGES ) );'`;
 
 if [ ! -d $BASE_DIR ]; then
     mkdir $BASE_DIR;
@@ -37,4 +37,4 @@ for i in $langs; do
 done
 
 # Build manual lookup db
-php8.2 /local/systems/gen-phpweb-sqlite-db.php {{ rsync_mirrors_dir }}/phpweb/backend/manual-lookup.sqlite {{ rsync_mirrors_dir }}/phpweb /manual >/var/log/gen-phpweb-sqlite-db.log
+php{{ php_version }} /local/systems/gen-phpweb-sqlite-db.php {{ rsync_mirrors_dir }}/phpweb/backend/manual-lookup.sqlite {{ rsync_mirrors_dir }}/phpweb /manual >/var/log/gen-phpweb-sqlite-db.log

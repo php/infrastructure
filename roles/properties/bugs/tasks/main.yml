@@ -8,29 +8,14 @@
     state: present
     update_cache: yes
 
-- name: Enable extra PHP extensions (Debian 12/PHP 8.2)
+- name: Enable extra PHP extensions
   shell: "phpenmod {{ item }}"
   args:
-    creates: "/etc/php/8.2/apache2/conf.d/20-{{ item }}.ini"
+    creates: "/etc/php/{{ php_version }}/apache2/conf.d/20-{{ item }}.ini"
   loop:
     - gd
     - mysqli
   notify: reload apache
-  when:
-    - ansible_facts['distribution'] == 'Debian'
-    - ansible_facts['distribution_major_version'] == '12'
-
-- name: Enable extra PHP extensions (Debian 13/PHP 8.4)
-  shell: "phpenmod {{ item }}"
-  args:
-    creates: "/etc/php/8.4/apache2/conf.d/20-{{ item }}.ini"
-  loop:
-    - gd
-    - mysqli
-  notify: reload apache
-  when:
-    - ansible_facts['distribution'] == 'Debian'
-    - ansible_facts['distribution_major_version'] == '13'
 
 - name: Add Apache config for bugs.php.net
   template:

@@ -15,7 +15,7 @@
 - name: Enable extra PHP extensions
   shell: "phpenmod {{ item }}"
   args:
-    creates: "/etc/php/8.2/apache2/conf.d/20-{{ item }}.ini"
+    creates: "/etc/php/{{ php_version }}/apache2/conf.d/20-{{ item }}.ini"
   loop:
     - gd
     - mysqli

@@ -12,7 +12,7 @@
 - name: Enable extra PHP extensions
   shell: "phpenmod {{ item.extension }}"
   args:
-    creates: "/etc/php/8.2/apache2/conf.d/{{ item.priority }}-{{ item.extension }}.ini"
+    creates: "/etc/php/{{ php_version }}/apache2/conf.d/{{ item.priority }}-{{ item.extension }}.ini"
   loop:
     - extension: gd
       priority: 20
@@ -25,7 +25,7 @@
 - name: Add site specific settings
   template:
     src: templates/95-local-settings.ini
-    dest: /etc/php/8.2/apache2/conf.d/95-local-settings.ini
+    dest: /etc/php/{{ php_version }}/apache2/conf.d/95-local-settings.ini
   notify: reload apache
 
 - name: Add Apache config for analytics.php.net

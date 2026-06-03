@@ -34,7 +34,7 @@ In ``inventory/php.net.zone``, add::
 
 In ``inventory/php/hosts``, **add** under the right group::
 
-	service{x} ansible_host=service{x}-ams.internal.php.net
+	service{x} ansible_host=service{x}-ams.internal.php.net php_version=8.4
 
 If you're replacing a service, you need to remove the old one at a later
 stage.
