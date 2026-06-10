@@ -30,7 +30,7 @@ $ORIGIN php.net.
 analytics		IN CNAME analytics-php-net.ax4z.com.
 
 ; bugs database, mostly read-only now
-bugs			IN CNAME bugs-php-net.ax4z.com.
+bugs			IN CNAME bugs-internal-php-net.b-cdn.net.
 
 ; doc.php.net, managing the documentation project
 doc			IN CNAME doc-php-net.ax4z.com.
@@ -51,11 +51,7 @@ lists			IN A 104.236.36.140
 lists-origin		IN CNAME lists.php.net.
 
 ; main holds backend systems for user notes, @php.net user management
-; main-origin is name of host, see Digital Ocean section
-main			IN CNAME main-php-net.ax4z.com.
-; these two names can probably be retired
-;mail 			IN CNAME main.php.net.
-;master			IN CNAME main.php.net.
+main			IN CNAME main-internal-php-net.b-cdn.net.
 
 ; monitoring host for the php.net infrastructure
 monitoring-origin	IN CNAME bk2.php.net.
@@ -77,7 +73,7 @@ pear	 		IN CNAME pear-origin.php.net.
 download.pear        IN CNAME euk3.php.net.
 
 ; PECL
-pecl			IN CNAME pecl-php-net.ax4z.com.
+pecl			IN CNAME pecl-internal-php-net.b-cdn.net.
 
 ; people.php.net user directory
 people			IN CNAME people-php-net.ax4z.com.
