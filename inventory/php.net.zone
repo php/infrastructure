@@ -224,6 +224,20 @@ bugs.internal         IN CNAME service6-ams.internal.php.net.
 main.internal         IN CNAME service6-ams.internal.php.net.
 pecl.internal         IN CNAME service6-ams.internal.php.net.
 
+; Service 7: Doc, Downloads, People, Shared, QA, Talks, Windows, and WWW
+service7-ams.internal IN A 178.62.194.53
+new.doc.internal          IN CNAME service7-ams.internal.php.net.
+new.downloads.internal    IN CNAME service7-ams.internal.php.net.
+new.people.internal       IN CNAME service7-ams.internal.php.net.
+new.shared.internal       IN CNAME service7-ams.internal.php.net.
+new.qa.internal           IN CNAME service7-ams.internal.php.net.
+new.talks.internal        IN CNAME service7-ams.internal.php.net.
+new.windows.internal      IN CNAME service7-ams.internal.php.net.
+new.www.internal          IN CNAME service7-ams.internal.php.net.
+
+; Abandoned
+new.gtk.internal          IN CNAME service7-ams.internal.php.net.
+
 ; Misc stuff
 localhost		IN A 127.0.0.1
 
