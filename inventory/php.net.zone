@@ -33,13 +33,13 @@ analytics		IN CNAME analytics-php-net.ax4z.com.
 bugs			IN CNAME bugs-internal-php-net.b-cdn.net.
 
 ; doc.php.net, managing the documentation project
-doc			IN CNAME doc-php-net.ax4z.com.
+doc			IN CNAME doc-internal-php-net.b-cdn.net.
 
 ; downloads -- used by release managers for QA builds and windows downloads
-downloads		IN CNAME downloads-php-net.ax4z.com.
+downloads		IN CNAME downloads-internal-php-net.b-cdn.net.
 
 ; gtk project is abandoned, but old site lives on
-gtk			IN CNAME gtk-php-net.ax4z.com.
+gtk			IN CNAME gtk-internal-php-net.b-cdn.net.
 
 ; Jump boxes for login to .php.net servers
 americas.jump		IN CNAME php-jump4.php.net.
@@ -76,10 +76,10 @@ download.pear        IN CNAME euk3.php.net.
 pecl			IN CNAME pecl-internal-php-net.b-cdn.net.
 
 ; people.php.net user directory
-people			IN CNAME people-php-net.ax4z.com.
+people			IN CNAME people-internal-php-net.b-cdn.net.
 
 ; old qa.php.net website, which besides robots.txt now redirects to other locations (only)
-qa			IN CNAME qa-php-net.ax4z.com.
+qa			IN CNAME qa-internal-php-net.b-cdn.net.
 
 ; rsync is used for distributing consolidated versions of our properties
 ; public rsync access is not available directly, but instead through our partner Stream Service:
@@ -89,27 +89,27 @@ asia.rsync           IN CNAME rsync.php.net.
 europe.rsync         IN CNAME rsync.php.net.
 
 ; shared is important, most php.net sites rely on it for styles, etc.
-shared               IN CNAME shared-php-net.ax4z.com.
+shared               IN CNAME shared-internal-php-net.b-cdn.net.
 
 ; status is a CNAME for our OhDear health monitoring page
 status			IN CNAME status.ssl.ohdear.app.
 
 ; talks is our preferred name now, old aliases should redirect
-talks			IN CNAME talks-php-net.ax4z.com.
-conf			IN CNAME conf-php-net.ax4z.com.
-conf2			IN CNAME conf2-php-net.ax4z.com.
-pres			IN CNAME pres-php-net.ax4z.com.
-pres2			IN CNAME pres2-php-net.ax4z.com.
+talks			IN CNAME talks-internal-php-net.b-cdn.net.
+conf			IN CNAME talks-internal-php-net.b-cdn.net.
+conf2			IN CNAME talks-internal-php-net.b-cdn.net.
+pres			IN CNAME talks-internal-php-net.b-cdn.net.
+pres2			IN CNAME talks-internal-php-net.b-cdn.net.
 
 ; wiki is used for project documentation and RFCs
 ; wiki.internal is name of host, see Digital Ocean section
 wiki			IN CNAME wiki-internal-php-net.b-cdn.net.
 
 ; old windows.php.net website, which besides robots.txt now redirects to other locations (only)
-windows		IN CNAME windows-php-net.ax4z.com.
+windows		IN CNAME windows-internal-php-net.b-cdn.net.
 
 ; www is kind of a big deal
-www                  300 IN CNAME www-php-net.ax4z.com.
+www                  300 IN CNAME www-internal-php-net.b-cdn.net.
 
 ;------------ Old hostnames that just get redirected (or retired?)
 
@@ -192,14 +192,14 @@ museum.internal       IN CNAME service0-ams.internal.php.net.
 
 ; Service 2: Doc, Downloads, People, Shared, QA, Talks, Windows, and WWW
 service2-ams.internal IN A 206.189.2.9
-doc.internal          IN CNAME service2-ams.internal.php.net.
-downloads.internal    IN CNAME service2-ams.internal.php.net.
-people.internal       IN CNAME service2-ams.internal.php.net.
-shared.internal       IN CNAME service2-ams.internal.php.net.
-qa.internal           IN CNAME service2-ams.internal.php.net.
-talks.internal        IN CNAME service2-ams.internal.php.net.
-windows.internal      IN CNAME service2-ams.internal.php.net.
-www.internal          IN CNAME service2-ams.internal.php.net.
+;doc.internal          IN CNAME service2-ams.internal.php.net.
+;downloads.internal    IN CNAME service2-ams.internal.php.net.
+;people.internal       IN CNAME service2-ams.internal.php.net.
+;shared.internal       IN CNAME service2-ams.internal.php.net.
+;qa.internal           IN CNAME service2-ams.internal.php.net.
+;talks.internal        IN CNAME service2-ams.internal.php.net.
+;windows.internal      IN CNAME service2-ams.internal.php.net.
+;www.internal          IN CNAME service2-ams.internal.php.net.
 
 ; Abandoned
 gtk.internal          IN CNAME service2-ams.internal.php.net.
@@ -226,6 +226,14 @@ pecl.internal         IN CNAME service6-ams.internal.php.net.
 
 ; Service 7: Doc, Downloads, People, Shared, QA, Talks, Windows, and WWW
 service7-ams.internal IN A 178.62.194.53
+doc.internal          IN CNAME service7-ams.internal.php.net.
+downloads.internal    IN CNAME service7-ams.internal.php.net.
+people.internal       IN CNAME service7-ams.internal.php.net.
+shared.internal       IN CNAME service7-ams.internal.php.net.
+qa.internal           IN CNAME service7-ams.internal.php.net.
+talks.internal        IN CNAME service7-ams.internal.php.net.
+windows.internal      IN CNAME service7-ams.internal.php.net.
+www.internal          IN CNAME service7-ams.internal.php.net.
 new.doc.internal          IN CNAME service7-ams.internal.php.net.
 new.downloads.internal    IN CNAME service7-ams.internal.php.net.
 new.people.internal       IN CNAME service7-ams.internal.php.net.

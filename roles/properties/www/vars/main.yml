@@ -1,7 +1,7 @@
 property: "www"
 
 www_domain: "{{ property }}.{{ domain }}"
-www_domain_alias: "{{ property }}.{{ internal_domain }}"
+www_domain_alias: "*.{{ property }}.{{ internal_domain }} {{ property }}.{{ internal_domain }}"
 
 www_docroot: "{{ common_doc_root }}/{{ property }}.{{ domain }}"
 www_config_file: "{{ property }}.{{ domain }}.conf"

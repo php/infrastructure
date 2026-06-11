@@ -47,13 +47,3 @@
     property: pecl
     backup_paths: [ "{{ pecl_box_dir }}" ]
     backup_dbs: [ "{{ pecl_database }}" ]
-
-# This can be run when backup data is run at least once and available for restore
-# The restore role should be skipped when initializing the property for the first time with --extra-vars "first_run=true"
-- name: Run restore tasks
-  include_role:
-    name: restore_property
-  vars:
-    property: pecl
-    backup_paths: [ "{{ pecl_box_dir }}" ]
-  when: restore_data is defined and restore_data

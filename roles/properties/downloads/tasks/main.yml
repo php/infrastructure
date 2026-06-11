@@ -1,6 +1,14 @@
 # This role sets up the property downloads.php.net with Apache together with the php module
 # It uses self-signed SSL certs
 
+- name: Enable extra PHP extensions
+  shell: "phpenmod {{ item }}"
+  args:
+    creates: "/etc/php/{{ php_version }}/apache2/conf.d/20-{{ item }}.ini"
+  loop:
+    - curl
+  notify: reload apache
+
 - name: Enable 'userdir' Apache module
   command: a2enmod {{ item }}
   args:
@@ -45,19 +53,20 @@
 
 # Backup entire downloads home directory as the disk is full of windows downloads and RC downloads,
 # which are stored in people’s home directories
+- name: Store pre-backup/post-backup scripts
+  template:
+    src: "templates/{{ item }}"
+    dest: "/local/systems/{{ item }}"
+    mode: 0700
+  loop:
+  - record-users.sh
+  - restore-users-and-home-permissions.sh
+
 - name: Run backup tasks
   include_role:
     name: backup_property
   vars:
     property: downloads
     backup_paths: [ "{{ downloads_home_dir }}" ]
-
-# This can be run when backup data is run at least once and available for restore
-# The restore role should be skipped when initializing the property for the first time with --extra-vars "first_run=true"
-- name: Run restore tasks
-  include_role:
-    name: restore_property
-  vars:
-    property: downloads
-    backup_path: "{{ downloads_home_dir }}"
-  when: restore_data is defined and restore_data
+    pre_backup_script: "/local/systems/record-users.sh"
+    post_restore_script: "/local/systems/restore-users-and-home-permissions.sh"

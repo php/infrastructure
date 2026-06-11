@@ -19,6 +19,8 @@
   - rsync
   - service
 
+  gather_facts: false
+
   remote_user: root
 
   tasks:

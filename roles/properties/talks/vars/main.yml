@@ -1,7 +1,7 @@
 property: "talks"
 
 talks_domain: "{{ property }}.{{ domain }}"
-talks_domain_alias: "{{ property }}.{{ internal_domain }}"
+talks_domain_alias: "*.{{ property }}.{{ internal_domain }} {{ property }}.{{ internal_domain }}"
 
 talks_docroot: "{{ common_doc_root }}/{{ property }}.{{ domain }}"
 talks_config_file: "{{ property }}.{{ domain }}.conf"

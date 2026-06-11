@@ -99,6 +99,11 @@ ufw allow proto tcp from {{ host }} to any port 53
 {%   for host in access_to_main_hosts %}
 ufw allow from {{ host }} to any app "WWW Secure"
 {%   endfor %}
+
+# Allow access on 'dynamic' to port 443 from all static hosts (includes people, and www, etc)
+{%   for service_host in groups['static'] %}
+ufw allow from {{ hostvars[service_host].ansible_facts['default_ipv4'].address }} to any app "WWW Secure"
+{%   endfor %}
 {% endif %}
 
 {% if inventory_hostname in groups['dynamic'] %}

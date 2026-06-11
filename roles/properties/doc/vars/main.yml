@@ -1,7 +1,7 @@
 property: "doc"
 
-doc_domain: "doc.{{ domain }}"
-doc_domain_alias: "doc.{{ internal_domain }}"
+doc_domain: "{{ property }}.{{ domain }}"
+doc_domain_alias: "*.{{ property }}.{{ internal_domain }} {{ property }}.{{ internal_domain }}"
 
 doc_docroot: "{{ common_doc_root }}/{{ doc_domain }}"
 doc_config_file: "{{ property }}.{{ domain }}.conf"
