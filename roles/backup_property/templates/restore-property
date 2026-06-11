@@ -55,10 +55,16 @@ export RESTIC_PASSWORD="{{ restic_password }}"
       echo "[$(date)] Could not download data."
     fi
 
+{% endfor %}
+
+{% if post_restore_script is defined() %}
+    echo "[$(date)] running post-backup-script {{ post_restore_script }}"
+    {{ post_restore_script }}
+{% endif %}
+
     # Removing temporary data
     rm -rf "{{ restore_dir }}"
 
-{% endfor %}
 {% endif %}
 
 echo "[$(date)] Restore process finished successfully."

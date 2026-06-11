@@ -39,6 +39,12 @@ export RESTIC_PASSWORD="{{ restic_password }}"
 
 # Do backups of directories
 {% if backup_paths is defined() %}
+
+{% if pre_backup_script is defined() %}
+    echo "[$(date)] running pre-backup-script {{ pre_backup_script }}"
+    {{ pre_backup_script }}
+{% endif %}
+
 {% for backup_path in backup_paths %}
 
     # Backup path {{ backup_path }}
