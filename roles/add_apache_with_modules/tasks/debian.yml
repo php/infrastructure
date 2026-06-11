@@ -28,6 +28,7 @@
     - headers
     - rewrite
     - remoteip
+    - status
   notify: reload apache
 
 - name: Add opcache and other local PHP settings
