@@ -182,13 +182,13 @@ analytics-origin	IN A 167.71.2.31
 
 ; Jump Hosts
 jump-ams-1.internal   IN A 24.144.78.237
-                      IN AAAA 2a03:b0c0:2:f0::67e0:1001
+;                      IN AAAA 2a03:b0c0:2:f0::67e0:1001
 jump-sfo-1.internal   IN A 209.38.118.252
-                      IN AAAA 2604:a880:4:1d0::7f6b:1000
+;                      IN AAAA 2604:a880:4:1d0::7f6b:1000
 
 ; Rsync Host
 rsync0-ams.internal   IN A 104.248.198.138
-                      IN AAAA 2a03:b0c0:2:f0:0:1:b0da:d001
+;                      IN AAAA 2a03:b0c0:2:f0:0:1:b0da:d001
 
 ; Service 4: Analytics
 service4-ams.internal IN A 159.223.1.255
@@ -196,19 +196,19 @@ analytics.internal    IN CNAME service4-ams.internal.php.net.
 
 ; Service 5: Wiki
 service5-ams.internal IN A 178.62.235.110
-                      IN AAAA 2a03:b0c0:2:f0:0:1:8cdf:b001
+;                      IN AAAA 2a03:b0c0:2:f0:0:1:8cdf:b001
 wiki.internal         IN CNAME service5-ams.internal.php.net.
 
 ; Service 6: Bugs, Main, and PECL (and DNS main)
 service6-ams.internal IN A 134.209.86.196
-                      IN AAAA 2a03:b0c0:2:f0:0:1:9e06:1001
+;                      IN AAAA 2a03:b0c0:2:f0:0:1:9e06:1001
 bugs.internal         IN CNAME service6-ams.internal.php.net.
 main.internal         IN CNAME service6-ams.internal.php.net.
 pecl.internal         IN CNAME service6-ams.internal.php.net.
 
 ; Service 7: Doc, Downloads, People, Shared, QA, Talks, Windows, and WWW
 service7-ams.internal IN A 178.62.194.53
-                      IN AAAA 2a03:b0c0:2:f0:0:1:a983:a001
+;                      IN AAAA 2a03:b0c0:2:f0:0:1:a983:a001
 doc.internal          IN CNAME service7-ams.internal.php.net.
 downloads.internal    IN CNAME service7-ams.internal.php.net.
 people.internal       IN CNAME service7-ams.internal.php.net.
@@ -223,7 +223,7 @@ gtk.internal          IN CNAME service2-ams.internal.php.net.
 
 ; Service 8: Museum
 service8-ams.internal IN A 206.189.106.149
-                      IN AAAA 2a03:b0c0:2:f0:0:1:b0b0:b001
+;                      IN AAAA 2a03:b0c0:2:f0:0:1:b0b0:b001
 museum.internal       IN CNAME service8-ams.internal.php.net.
 
 ; =================================================
