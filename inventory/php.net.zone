@@ -190,26 +190,6 @@ rsync0-ams.internal  IN A 104.248.198.138
 service0-ams.internal IN A 167.172.35.139
 museum.internal       IN CNAME service0-ams.internal.php.net.
 
-; Service 2: Doc, Downloads, People, Shared, QA, Talks, Windows, and WWW
-service2-ams.internal IN A 206.189.2.9
-;doc.internal          IN CNAME service2-ams.internal.php.net.
-;downloads.internal    IN CNAME service2-ams.internal.php.net.
-;people.internal       IN CNAME service2-ams.internal.php.net.
-;shared.internal       IN CNAME service2-ams.internal.php.net.
-;qa.internal           IN CNAME service2-ams.internal.php.net.
-;talks.internal        IN CNAME service2-ams.internal.php.net.
-;windows.internal      IN CNAME service2-ams.internal.php.net.
-;www.internal          IN CNAME service2-ams.internal.php.net.
-
-; Abandoned
-gtk.internal          IN CNAME service2-ams.internal.php.net.
-
-; Deprecated
-conf.internal         IN CNAME service2-ams.internal.php.net.
-conf2.internal        IN CNAME service2-ams.internal.php.net.
-pres.internal         IN CNAME service2-ams.internal.php.net.
-pres2.internal        IN CNAME service2-ams.internal.php.net.
-
 ; Service 4: Analytics
 service4-ams.internal IN A 159.223.1.255
 analytics.internal    IN CNAME service4-ams.internal.php.net.
@@ -234,17 +214,9 @@ qa.internal           IN CNAME service7-ams.internal.php.net.
 talks.internal        IN CNAME service7-ams.internal.php.net.
 windows.internal      IN CNAME service7-ams.internal.php.net.
 www.internal          IN CNAME service7-ams.internal.php.net.
-new.doc.internal          IN CNAME service7-ams.internal.php.net.
-new.downloads.internal    IN CNAME service7-ams.internal.php.net.
-new.people.internal       IN CNAME service7-ams.internal.php.net.
-new.shared.internal       IN CNAME service7-ams.internal.php.net.
-new.qa.internal           IN CNAME service7-ams.internal.php.net.
-new.talks.internal        IN CNAME service7-ams.internal.php.net.
-new.windows.internal      IN CNAME service7-ams.internal.php.net.
-new.www.internal          IN CNAME service7-ams.internal.php.net.
 
 ; Abandoned
-new.gtk.internal          IN CNAME service7-ams.internal.php.net.
+gtk.internal          IN CNAME service2-ams.internal.php.net.
 
 ; Misc stuff
 localhost		IN A 127.0.0.1
