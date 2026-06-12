@@ -30,7 +30,10 @@ Add New Droplet to Inventory
 In ``inventory/php.net.zone``, add::
 
 	service{x}-ams.internal IN A {Public IPv4}
-	{property}.internal     IN CNAME service{x}-ams.internal.php.net.
+	service{x}-ams.internal IN AAAA {Public IPv6}
+	new.{property}.internal IN CNAME service{x}-ams.internal.php.net.
+
+If you're not replacing a node, don't prefix with ``new.``.
 
 In ``inventory/php/hosts``, **add** under the right group::
 
@@ -55,7 +58,14 @@ Then run to apply new DNS rules::
 Wait until they resolves through::
 
 	dig service{x}-ams.internal.php.net @dns1.easydns.com
+
+For a totally new VM::
+
 	dig {property}.internal.php.net @dns1.easydns.com
+
+For a VM that are about to replace::
+
+	dig new.{property}.internal.php.net @dns1.easydns.com
 
 *Note*: If you're adding a server for the ``dynamic`` group, then it will fail
 for the new host as it does not have a DNS entry yet. That's okay, and you
@@ -67,7 +77,9 @@ Configure Machine for Access
 
 This can only be run *once*.
 
-1. Turn off the SSH Jump Host Proxy for the new host, but keep the right key, in ``~/.ssh/config``::
+1. Turn off the SSH Jump Host Proxy for the new host, but keep the right key,
+   in ``~/.ssh/config``. Put this entry **before** the generic
+   ``*.internal.php.net`` configuration in that file.
 
 	Host service{x}-ams.internal.php.net
 		ProxyCommand None
@@ -76,7 +88,11 @@ This can only be run *once*.
 
 2. Comment out the ``[ssh_connection]`` section in ``ansible.cfg``
 
-3. Run the intitialiser, filtering for the right property only. First as trial::
+3. SSH into the new machine, to add the fingerprint::
+
+	ssh service{x}-ams.internal.php.net
+
+4. Run the intitialiser, filtering for the right property only. First as trial::
 
 	ansible-playbook -C --diff initializeService.yml --limit service{x} --extra-vars "@etc/admins.yml"
 
@@ -84,11 +100,11 @@ This can only be run *once*.
 	
 	ansible-playbook --diff initializeService.yml --limit service{x} --extra-vars "@etc/admins.yml"
 
-4. Re-enable the  ``[ssh_connection]`` section in ``ansible.cfg``
+5. Re-enable the  ``[ssh_connection]`` section in ``ansible.cfg``
 
-5. Comment out the SSH Jump Host Proxy disablement for the new host in ``~/.ssh/config``.
+6. Comment out the SSH Jump Host Proxy disablement for the new host in ``~/.ssh/config``.
 
-6. Install the firewall, but make sure you've connected to both jump hosts by running::
+7. Install the firewall, but make sure you've connected to both jump hosts by running::
 
 	./bin/auth-jump0
 	./bin/auth-jump1

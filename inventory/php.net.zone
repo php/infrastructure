@@ -21,9 +21,9 @@ $ORIGIN php.net.
 
 ;------------ Services - these are alphabetical by the primary name of the service.
 
-; Each service should have ${SERVICE}-origin pointing to a host machine
+; Each service should have ${SERVICE}.internal pointing to a host machine
 ; (see the 'Physical boxen' section below), ${SERVICE} should be a CNAME to
-; a Myra hostname that pulls from that origin.
+; a Bunny or Myra hostname that pulls from that origin.
 
 ; analytics - Matomo for collecting stats on php.net properties
 ; analytics-origin is name of host, see Digital Ocean section
@@ -57,9 +57,8 @@ main			IN CNAME main-internal-php-net.b-cdn.net.
 monitoring-origin	IN CNAME bk2.php.net.
 monitoring		IN CNAME monitoring-origin.php.net.
 
-; museum is a static archive of all releases
-; museum.internal  is name of host, see Digital Ocean section
-museum			IN CNAME museum-php-net.ax4z.com.
+; museum is a static archive of old releases
+museum			IN CNAME museum-internal-php-net.b-cdn.net.
 
 ; NNTP server, do NOT switch to CDN
 news			IN CNAME lists.php.net.
@@ -173,10 +172,12 @@ euk3			IN A 109.203.101.62
 ; Bauer + Kirch GmbH (contact mj)
 bk2			IN A 157.90.121.187
 
+; =================================================
 ; DigitalOcean - PHP Project (contact: systems or derick)
 analytics-origin	IN A 167.71.2.31
 			IN AAAA 2a03:b0c0:2:d0::1865:c001
 
+; =================================================
 ; DigitalOcean - New Infrastructure (contact: systems or derick)
 
 ; Jump Hosts
@@ -185,10 +186,6 @@ jump-sfo-1.internal  IN A 209.38.118.252
 
 ; Rsync Host
 rsync0-ams.internal  IN A 104.248.198.138
-
-; Service 0: Museum
-service0-ams.internal IN A 167.172.35.139
-museum.internal       IN CNAME service0-ams.internal.php.net.
 
 ; Service 4: Analytics
 service4-ams.internal IN A 159.223.1.255
@@ -218,6 +215,11 @@ www.internal          IN CNAME service7-ams.internal.php.net.
 ; Abandoned
 gtk.internal          IN CNAME service2-ams.internal.php.net.
 
+; Service 8: Museum
+service8-ams.internal IN A 206.189.106.149
+museum.internal       IN CNAME service8-ams.internal.php.net.
+
+; =================================================
 ; Misc stuff
 localhost		IN A 127.0.0.1
 

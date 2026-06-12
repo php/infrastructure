@@ -13,7 +13,7 @@ dynamic
 analytics
 
 [museum]
-service0 ansible_host=service0-ams.internal.php.net php_version=8.2
+service8 ansible_host=service8-ams.internal.php.net php_version=8.4
 
 [wiki]
 service5 ansible_host=service5-ams.internal.php.net php_version=8.4
