@@ -7,6 +7,7 @@
     creates: "/etc/php/{{ php_version }}/apache2/conf.d/20-{{ item }}.ini"
   loop:
     - curl
+    - zip
   notify: reload apache
 
 - name: Enable 'userdir' Apache module

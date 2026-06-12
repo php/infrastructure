@@ -14,6 +14,7 @@
       - php{{ php_version }}-mysql
       - php{{ php_version }}-sqlite3
       - php{{ php_version }}-xml
+      - php{{ php_version }}-zip
     state: present
     update_cache: yes
 
