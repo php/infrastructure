@@ -1,2 +1,7 @@
 - name: reload systemctl
   command: systemctl daemon-reload
+
+- name: restart ohdear health check
+  service:
+    name: ohdear-health-check.service
+    state: restarted
