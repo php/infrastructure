@@ -8,12 +8,17 @@
   template:
     src: templates/ohdear-health.yaml
     dest: /local/systems/bin/ohdear-health.yaml
+  notify:
+    - restart ohdear health check
 
 - name: Copy OhDear Health Check Binary
   get_url:
-    url: https://derickrethans.nl/files/dump/ohdear-system-health
+    url: https://github.com/derickr/ohdear-system-health/releases/latest/download/ohdear-system-health-linux-amd64
+    checksum: sha512:https://github.com/derickr/ohdear-system-health/releases/latest/download/ohdear-system-health-linux-amd64.sha512
     dest: /local/systems/bin/ohdear-system-health
     mode: "755"
+  notify:
+    - restart ohdear health check
 
 - name: Copy systemd service file
   template:
@@ -21,9 +26,10 @@
     dest: /etc/systemd/system/ohdear-health-check.service
   notify:
     - reload systemctl
+    - restart ohdear health check
 
-- name: Start OhDear Health Check
+- name: Ensure OhDear Health Check is enabled and running
   service:
     name: ohdear-health-check.service
-    state: restarted
+    state: started
     enabled: true
