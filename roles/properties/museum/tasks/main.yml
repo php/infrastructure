@@ -72,7 +72,7 @@
 
 - name: Set permissions for Nginx logs directory
   file:
-    path: /usr/local/nginx/logs
+    path: "{{ item }}"
     state: directory
     mode: "755"
     owner: www-data
