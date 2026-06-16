@@ -219,7 +219,7 @@ windows.internal      IN CNAME service7-ams.internal.php.net.
 www.internal          IN CNAME service7-ams.internal.php.net.
 
 ; Abandoned
-gtk.internal          IN CNAME service2-ams.internal.php.net.
+gtk.internal          IN CNAME service7-ams.internal.php.net.
 
 ; Service 8: Museum
 service8-ams.internal IN A 206.189.106.149
