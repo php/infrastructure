@@ -89,6 +89,24 @@ list on ``lists.php.net``::
     echo $USER_TO_ADD@php.net >> /var/spool/mlmmj/php-announce/control/moderators
     /usr/bin/mlmmj-sub -L /var/spool/mlmmj/php-announce -a $USER_TO_ADD@php.net
 
+Admins
+------
+
+An admin has access to the jump hosts and all services, and is added to the
+``sudo`` group.
+
+- Store the provided SSH key in ``roles/add_ssh_key/templates/ssh_keys`` using
+  the provided preferred Unix system user name as file name.
+
+- Run::
+
+  ansible-playbook --diff addAdminUser.yml \
+    --extra-vars "username={preferred system user} path_to_google_auth=absolute/path/to/.google_authenticator"
+
+This creates the user on the jump hosts and all services, adds them to the
+``sudo`` group, installs the ``.google_authenticator`` file on the jump host,
+and installs the SSH key everywhere.
+
 Removing a User from All Systems
 ================================
 
