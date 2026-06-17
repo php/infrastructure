@@ -1,6 +1,6 @@
 property: "rsync"
 
-rsync_box_volume: /mnt/volume_ams3_01
+rsync_box_volume: "/mnt/volume_ams3_{{ inventory_hostname }}"
 rsync_box_dir: "/local/this-box/{{ property }}" # hard coded box dir, because it's otherwise not available
 
 rsync_repositories_dir: "{{ rsync_box_dir }}/repositories"

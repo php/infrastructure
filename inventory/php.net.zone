@@ -189,6 +189,7 @@ jump-sfo-1.internal   IN A 209.38.118.252
 ; Rsync Host
 rsync0-ams.internal   IN A 104.248.198.138
 ;                      IN AAAA 2a03:b0c0:2:f0:0:1:b0da:d001
+rsync1-ams.internal   IN A 174.138.5.13
 
 ; Service 4: Analytics
 service4-ams.internal IN A 159.223.1.255

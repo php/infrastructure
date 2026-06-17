@@ -22,10 +22,27 @@ Quantity: 1
 Droplet name: ``service{x}-ams.internal.php.net``
 
 Project: PHP Ansible Infra
-Tags: service
+Tags: service (or rsync)
+
+*RSync Only:*
+
+Volumes Block Storage:
+
+- [X] Add additional storage
+- Create new:
+  - 200 GB
+  - Automatically Format & Mount
+  - Ext4
+- Name: volume-ams3-{rsynchostname}, like: ``volume-ams3-rsync1``.
+
 
 Add New Droplet to Inventory
 ----------------------------
+
+Service Droplet
+~~~~~~~~~~~~~~~
+
+*Skip for rsync hosts*
 
 In ``inventory/php.net.zone``, add::
 
@@ -44,6 +61,22 @@ stage.
 
 Also update the table in ``OperationalVMs.rst``.
 
+Rsync Droplet
+~~~~~~~~~~~~~
+
+*Skip for service hosts*
+
+In ``inventory/php.net.zone``, add::
+
+	rsync{x}-ams.internal IN A {Public IPv4}
+	rsync{x}-ams.internal IN AAAA {Public IPv6}
+
+In ``inventory/php/hosts``, **add** under the right group::
+
+	rsync{x} ansible_host=rsync{x}-ams.internal.php.net php_version=8.4
+
+Also update the table in ``OperationalVMs.rst``.
+
 Update DNS
 ----------
 
@@ -54,6 +87,9 @@ Run first to check if it is all OK::
 Then run to apply new DNS rules::
 
 	ansible-playbook --diff updateDns.yml
+
+For Service Hosts
+~~~~~~~~~~~~~~~~~
 
 Wait until they resolves through::
 
@@ -71,6 +107,14 @@ For a VM that are about to replace::
 for the new host as it does not have a DNS entry yet. That's okay, and you
 should probably use ``--limit service{originalNr}`` to only update the DNS on
 the already existing server.
+
+For Rsync Hosts
+~~~~~~~~~~~~~~~
+
+Wait until they resolves through::
+
+	dig rsync{x}-ams.internal.php.net @dns1.easydns.com
+
 
 Configure Machine for Access
 ----------------------------

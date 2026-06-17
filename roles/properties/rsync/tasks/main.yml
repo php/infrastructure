@@ -2,6 +2,9 @@
   apt:
     name:
     - git
+    - php{{ php_version }}-cli
+    - php{{ php_version }}-sqlite3
+    - php{{ php_version }}-xml
     state: present
     update_cache: yes
 

@@ -3,7 +3,7 @@ jumphost0 ansible_host=jump-ams-1.internal.php.net
 jumphost1 ansible_host=jump-sfo-1.internal.php.net
 
 [rsync]
-rsync0 ansible_host=rsync0-ams.internal.php.net php_version=8.2
+rsync1 ansible_host=rsync1-ams.internal.php.net php_version=8.4
 
 [service:children]
 museum
