@@ -8,6 +8,10 @@
     state: present
     update_cache: yes
 
+#- name: Remove box dir if it exists and not a link as the firewall creation
+#        script would have created it
+#  file
+
 - name: Link /local/this-box to {{ rsync_box_volume }}
   file:
     state: link
