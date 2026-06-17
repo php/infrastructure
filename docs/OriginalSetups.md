@@ -93,7 +93,7 @@ It does the following:
   3. Google Auth set up
   4. Set up firewall rules to only log in via jump host IPs
 
-You can add more or delete admins later as well. All user management tasks are outlined in [Users.md](Users.md).
+You can add more or delete admins later as well. All user management tasks are outlined in [ServerAccess.rst](ServerAccess.rst).
 
 
 ## Using Ansible
@@ -177,7 +177,7 @@ Once the machines are initialized, user management tasks are also handled via An
 - Adding a release manager user
 - Deleting a specified user
 
-Details of the user management tasks are outlined in [Users.md](Users.md).
+Details of the user management tasks are outlined in [ServerAccess.rst](ServerAccess.rst).
 
 
 # Additional tasks
