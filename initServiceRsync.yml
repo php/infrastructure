@@ -12,5 +12,24 @@
       include_role:
         name: install_common_software
 
+    - name: Gather facts for service hosts
+      setup:
+        gather_subset:
+          - default_ipv4
+      delegate_to: "{{ item }}"
+      delegate_facts: true
+      loop: "{{ groups['service'] }}"
+
+    - name: Setup /etc/hosts entries for private IPs for service hosts
+      lineinfile:
+        path: /etc/hosts
+        regexp: '.*{{ item }}-ams\..*$'
+        line: "{{ hostvars[item].ansible_facts['eth1'].ipv4.address }}\t{{ item }}-ams.{{ domain }}"
+        state: present
+      loop: "{{ groups['service'] }}"
+      vars:
+        domain: internal.php.net
+
+
   roles:
    - role: properties/rsync
