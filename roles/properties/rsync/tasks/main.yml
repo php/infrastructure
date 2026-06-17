@@ -8,16 +8,27 @@
     state: present
     update_cache: yes
 
-#- name: Remove box dir if it exists and not a link as the firewall creation
-#        script would have created it
-#  file
+- name: Stat /local/this-box
+  stat:
+    path: "/local/this-box"
+    follow: false
+  register: this_box
+
+- name: Remove /local/this-box if it is not already the correct symlink
+  file:
+    path: "/local/this-box"
+    state: absent
+  when: >
+    not this_box.stat.islnk | default(false)
+    or this_box.stat.lnk_target != rsync_box_volume
 
 - name: Link /local/this-box to {{ rsync_box_volume }}
   file:
     state: link
+    force: yes
+    follow: false
     src: "{{ rsync_box_volume }}"
     dest: "/local/this-box"
-    mode: "755"
     owner: "root"
 
 - name: Create local dirs
