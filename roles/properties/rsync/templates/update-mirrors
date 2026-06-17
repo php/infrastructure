@@ -9,7 +9,7 @@ GIT_RESET_MAIN="git reset --quiet --hard origin/main"
 for i in phpweb; do
     cd {{ rsync_repositories_dir }}/$i
     $GIT_FETCH && $GIT_RESET
-    git submodule update
+    (cd distributions && $GIT_FETCH && $GIT_RESET)
 done
 
 # Websites needing the 'shared' module
