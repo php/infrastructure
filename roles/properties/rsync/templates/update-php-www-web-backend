@@ -1,0 +1,38 @@
+#!/bin/sh
+
+# export tokens
+export TOKEN="{{ main_user_notes_token }}"
+export TOKEN_FLICKR="{{ flickr_api_token }}"
+
+# php-www-web has some hardcoded files in the repo for development purposes
+# these need to be overwritten by the update-php-www-web-backend script to fetch new content
+find {{ rsync_repositories_dir }}/php-www-web -type d -exec chmod "ga+rx" "{}" ";"
+php {{ rsync_mirrors_dir }}/php-main-web/scripts/update-backend {{ rsync_repositories_dir }}/php-www-web/public
+rsync -qrltDvzC --exclude=".git" --exclude="public/distributions" --exclude="public/manual/en" {{ rsync_repositories_dir }}/php-www-web/ {{ rsync_mirrors_dir }}/php-www-web
+
+if ls {{ rsync_mirrors_dir }}/manual-chms/*.chm > /dev/null 2> /dev/null; then
+  for i in {{ rsync_mirrors_dir }}/manual-chms/*.chm; do
+    cp -p $i {{ rsync_mirrors_dir }}/php-www-web/public/distributions/manual
+  done
+fi
+
+# get manual notes
+mkdir -p {{ rsync_mirrors_dir }}/manual-notes.new
+php {{ rsync_mirrors_dir }}/php-main-web/scripts/update-user-notes {{ rsync_mirrors_dir }}/manual-notes.new
+if [ $? -eq 0 ]; then
+  rm -rf {{ rsync_mirrors_dir }}/manual-notes
+  mv {{ rsync_mirrors_dir }}/manual-notes.new {{ rsync_mirrors_dir }}/manual-notes
+else
+  rm -rf {{ rsync_mirrors_dir }}/manual-notes.new
+fi
+
+find {{ rsync_mirrors_dir }}/manual-notes -type f \
+  | xargs head -1 -q | cut -d '|' -f 2 | sort \
+  > {{ rsync_mirrors_dir }}/manual-notes/sections
+
+date +"%s" > {{ rsync_mirrors_dir }}/manual-notes/last-updated
+
+rsync -a --delete --delete-after {{ rsync_mirrors_dir }}/manual-notes/ {{ rsync_mirrors_dir }}/php-www-web/public/backend/notes/
+
+DATE=`date +"%s"`
+echo "<?php \$LAST_UPDATED=$DATE; ?>" > {{ rsync_mirrors_dir }}/php-www-web/include/last_updated.inc

@@ -3,14 +3,23 @@
 GIT_FETCH="git fetch --quiet origin"
 GIT_RESET="git reset --quiet --hard origin/master"
 GIT_RESET_MAIN="git reset --quiet --hard origin/main"
+GIT_RESET_PREVIEW="git reset --quiet --hard origin/preview"
 
-# Update in its own dedicate checkout first
+# Update in its own dedicate checkouts first
 # It'll be moved to {{ rsync_mirrors_dir }}/phpweb in update-phpweb-backend
 for i in phpweb; do
     cd {{ rsync_repositories_dir }}/$i
     $GIT_FETCH && $GIT_RESET
     (cd distributions && $GIT_FETCH && $GIT_RESET)
 done
+
+# It'll be moved to {{ rsync_mirrors_dir }}/php-www-web in update-php-www-web-backend
+for i in php-www-web; do
+    cd {{ rsync_repositories_dir }}/$i
+    $GIT_FETCH && $GIT_RESET_PREVIEW
+    (cd public/distributions && $GIT_FETCH && $GIT_RESET)
+done
+
 
 # Websites needing the 'shared' module
 for i in docweb php-people-web qaweb php-master-web php-news-web php-bugs-web php-gtk-web; do

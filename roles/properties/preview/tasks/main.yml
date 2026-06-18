@@ -1,0 +1,22 @@
+# This role sets up the property preview.php.net with Apache together with the php module
+
+- name: Add Apache config for preview.php.net
+  template:
+    src: templates/{{ preview_config_file }}
+    dest: "/etc/apache2/sites-available/{{ preview_config_file }}"
+  notify: reload apache
+
+- name: Enable config file
+  shell: "a2ensite {{ preview_config_file }}"
+  args:
+    creates: "/etc/apache2/sites-enabled/{{ preview_config_file }}"
+  notify: reload apache
+
+- name: Ensure Apache is started and enabled
+  service:
+    name: apache2
+    state: started
+    enabled: yes
+
+- include_tasks: deploy.yml
+

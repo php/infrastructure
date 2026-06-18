@@ -213,6 +213,7 @@ service7-ams.internal IN A 178.62.194.53
 doc.internal          IN CNAME service7-ams.internal.php.net.
 downloads.internal    IN CNAME service7-ams.internal.php.net.
 people.internal       IN CNAME service7-ams.internal.php.net.
+preview.internal      IN CNAME service7-ams.internal.php.net.
 shared.internal       IN CNAME service7-ams.internal.php.net.
 qa.internal           IN CNAME service7-ams.internal.php.net.
 talks.internal        IN CNAME service7-ams.internal.php.net.
