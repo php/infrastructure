@@ -1,0 +1,18 @@
+- name: Create local directory to store preview content
+  file:
+    state: directory
+    dest: "{{ preview_docroot }}"
+    mode: "755"
+
+- name: Copy update-preview script to the server
+  template:
+    src: templates/update-preview
+    dest: /local/systems/update-preview
+    mode: "700"
+
+- name: Create a cron job to run every 5 minutes
+  cron:
+    name: Run update-preview every 5 minutes
+    minute: "*/5"
+    job: /local/systems/update-preview
+

@@ -1,0 +1,7 @@
+property: "preview"
+
+preview_domain: "{{ property }}.{{ domain }}"
+preview_domain_alias: "*.{{ property }}.{{ internal_domain }} {{ property }}.{{ internal_domain }}"
+
+preview_docroot: "{{ common_doc_root }}/{{ property }}.{{ domain }}/public"
+preview_config_file: "{{ property }}.{{ domain }}.conf"

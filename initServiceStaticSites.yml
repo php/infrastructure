@@ -30,6 +30,7 @@
 
   roles:
     - role: properties/www
+    - role: properties/preview
     - role: properties/doc
     - role: properties/downloads
     - role: properties/gtk

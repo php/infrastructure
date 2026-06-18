@@ -25,6 +25,7 @@ gzip -9 php-bigxhtml.html -c > php_manual_$1.html.gz
 tar -czf php_manual_$1.tar.gz php-chunked-xhtml
 date
 
+# Original Production Environment
 echo "Create mirrors download directory"
 mkdir -p {{ rsync_mirrors_dir }}/phpweb/distributions/manual/
 
@@ -41,6 +42,30 @@ echo "Copying to rsync space"
 cp -rp php-web {{ rsync_mirrors_dir }}/phpweb/manual
 if [ $? -eq 0 ]; then
 	cd {{ rsync_mirrors_dir }}/phpweb/manual
+	rm -rf $1; cp -R php-web $1 # can't move it (yet) as we need it for the preview / php-www-web module too
+else
+	echo "FAILED COPYING php-web TO THE MANUAL FOLDER"
+fi
+date
+
+# Preview Environment
+# - the manual needs to make it into distributions at some point, but we're ignoring distributions for now
+#echo "Create mirrors download directory"
+#mkdir -p {{ rsync_mirrors_dir }}/phpweb/distributions/manual/
+
+#echo "Copying manuals to correct place"
+#cp -p php_manual_$1.html.gz {{ rsync_mirrors_dir }}/phpweb/distributions/manual/
+#if [ $? -eq 0 ]; then
+#	cp -p php_manual_$1.tar.gz {{ rsync_mirrors_dir }}/phpweb/distributions/manual/
+#else
+#	echo "FAILED COPYING html.gz INTO DISTRO/MANUAL FOLDER"
+#fi
+#date
+
+echo "Copying to rsync space"
+cp -rp php-web {{ rsync_mirrors_dir }}/php-www-web/public/manual
+if [ $? -eq 0 ]; then
+	cd {{ rsync_mirrors_dir }}/php-www-web/public/manual
 	rm -rf $1; mv php-web $1
 else
 	echo "FAILED COPYING php-web TO THE MANUAL FOLDER"

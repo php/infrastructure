@@ -56,6 +56,7 @@
     - update-everything
     - update-mirrors
     - update-phpweb-backend
+    - update-php-www-web-backend
 
 - name: Create rsyncd configuration file
   template:
@@ -73,11 +74,11 @@
     state: started
     enabled: yes
 
-# Initially clone all repositories. This task will not run if "{{ rsync_box_dir }}/repositories/phpweb/.git exists
+# Initially clone all repositories. This task will not run if "{{ rsync_box_dir }}/repositories/php-www-web/.git exists
 - name: Git clone everything
   command: /local/systems/git-clone
   args:
-    creates: "{{ rsync_box_dir }}/repositories/phpweb/.git"
+    creates: "{{ rsync_box_dir }}/repositories/php-www-web/.git"
 
 # At 0, 10, 20, 30, 40, and 50 minutes past the hour, between 00:00 and 22:50
 - name: Update everything cron

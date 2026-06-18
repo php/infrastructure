@@ -1,0 +1,7 @@
+#!/bin/sh
+
+rsync -rlptDC --timeout=600 --delete --delete-after \
+    --include='distributions/*.exe' --include='manual/en/' \
+    --include='manual/en/**' --include='manual/*.php' \
+    --include='manual/**' {{ rsync_address }}::php-www-web \
+    {{ preview_docroot }}
