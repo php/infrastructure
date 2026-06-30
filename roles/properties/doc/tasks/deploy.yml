@@ -32,7 +32,6 @@
     dest: /local/systems/{{ item }}
     mode: "700"
   loop:
-    - install-docweb-jpgraph
     - update-doc
     - update-docs-sources
     - update-docs-translation-status
@@ -43,8 +42,3 @@
     name: Run update-doc hourly
     special_time: hourly
     job: /local/systems/update-doc
-
-- name: Install JPGraph
-  shell: /local/systems/install-docweb-jpgraph
-  args:
-    creates: "{{ doc_docroot }}/include/jpgraph/VERSION"
