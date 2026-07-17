@@ -35,6 +35,9 @@ github_secret:
 bugs_magic_cookie: 
 flickr_api_token: 
 
+# Bunny CDN account API key, used by update-www to purge the CDN cache
+bunny_api_key:
+
 # OhDearHealthChecks
 ohdear_secret: 
 
