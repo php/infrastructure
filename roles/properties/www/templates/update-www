@@ -1,7 +1,19 @@
 #!/bin/sh
 
-rsync -rlptDC --timeout=600 --delete --delete-after \
+# export tokens
+export BUNNY_API_KEY="{{ bunny_api_key }}"
+
+CHANGES=$(rsync -rlptDC --timeout=600 --delete --delete-after --itemize-changes \
     --include='distributions/*.exe' --include='manual/en/' \
     --include='manual/en/**' --include='manual/*.php' \
     --include='manual/**' {{ rsync_address }}::phpweb \
-    {{ www_docroot }}
+    {{ www_docroot }})
+
+# Bust the Bunny CDN cache for the pre-release builds page, but only when
+# rsync actually pulled new content (avoids purging on every 5-minute run)
+if [ -n "$CHANGES" ]; then
+    curl --fail --silent --show-error --request POST \
+        --url 'https://api.bunny.net/purge?url=https://www.php.net/pre-release-builds.php*' \
+        --header "AccessKey: ${BUNNY_API_KEY}"
+fi
+
