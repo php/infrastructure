@@ -7,3 +7,4 @@ php {{ downloads_docroot }}/runner.php series:init {{ windows_builds_options }}
 php {{ downloads_docroot }}/runner.php series:update {{ windows_builds_options }}
 php {{ downloads_docroot }}/runner.php series:delete {{ windows_builds_options }}
 php {{ downloads_docroot }}/runner.php series:stability {{ windows_builds_options }}
+php {{ downloads_docroot }}/runner.php sbom:update {{ windows_builds_options }}
