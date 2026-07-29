@@ -9,6 +9,9 @@
     src: templates/update-www
     dest: /local/systems/update-www
     mode: "700"
+  vars:
+    bunny_purge_urls:
+      - "https://www.php.net/pre-release-builds.php*"
 
 - name: Create a cron job to run every 5 minutes
   cron:
