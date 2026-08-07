@@ -52,6 +52,12 @@
       src: roles/firewall/templates/update-firewall.sh
       mode: '755'
 
+  - name: Add /usr/sbin to PATH so that UFW can be found
+    cron:
+      name: PATH
+      env: yes
+      job: /usr/sbin:/usr/bin:/bin
+
   - name: Set up daily cron to refresh the firewall rules
     cron:
       name: "Daily firewall refresh"
