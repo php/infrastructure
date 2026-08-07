@@ -14,6 +14,7 @@
   loop:
     - pecl
     - php
+    - sbom
     - series
     - winlibs
 
