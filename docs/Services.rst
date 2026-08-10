@@ -132,8 +132,8 @@ A `cronjob <roles/properties/rsync/templates/update-everything>`_ runs every
 
 - `update-mirrors <roles/properties/rsync/templates/update-mirrors>`_, which
   is responsible for keeping the Git checkouts of each repository up to date.
-- `update-phpweb-backend
-  <roles/properties/rsync/templates/update-php-backend`>_, which runs scripts:
+- `update-php-www-web-backend
+  <roles/properties/rsync/templates/update-php-www-web-backend`>_, which runs scripts:
 
   - ``update-backend`` (from the `php/php-main-web` repository) runs to fetch
 	additional information that is used for the websites. After this is done,

@@ -6,7 +6,7 @@ export BUNNY_API_KEY="{{ bunny_api_key }}"
 CHANGES=$(rsync -rlptDC --timeout=600 --delete --delete-after --itemize-changes \
     --include='distributions/*.exe' --include='manual/en/' \
     --include='manual/en/**' --include='manual/*.php' \
-    --include='manual/**' {{ rsync_address }}::phpweb \
+    --include='manual/**' {{ rsync_address }}::php-www-web \
     {{ www_docroot }})
 
 # Bust the Bunny CDN cache, but only when rsync actually pulled new

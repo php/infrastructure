@@ -1,5 +1,4 @@
 # This role sets up the property www.php.net with Apache together with the php module
-# It uses self-signed SSL certs
 
 - name: Add Apache config for www.php.net
   template:

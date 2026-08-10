@@ -1,15 +1,7 @@
 #!/bin/bash
 # Production Site
 cd "{{ rsync_repositories_dir }}"
-git clone https://github.com/php/web-php.git phpweb
-cd "{{ rsync_repositories_dir }}"/phpweb
-git clone https://github.com/php/web-php-distributions.git distributions
-
-# Preview Site
-cd "{{ rsync_repositories_dir }}"
 git clone https://github.com/php/web-php.git php-www-web
-cd "{{ rsync_repositories_dir }}"/php-www-web
-git checkout preview
 cd "{{ rsync_repositories_dir }}"/php-www-web/public
 git clone https://github.com/php/web-php-distributions.git distributions
 

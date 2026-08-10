@@ -8,7 +8,7 @@ export TOKEN_FLICKR="{{ flickr_api_token }}"
 # these need to be overwritten by the update-php-www-web-backend script to fetch new content
 find {{ rsync_repositories_dir }}/php-www-web -type d -exec chmod "ga+rx" "{}" ";"
 php {{ rsync_mirrors_dir }}/php-main-web/scripts/update-backend {{ rsync_repositories_dir }}/php-www-web/public
-rsync -qrltDvzC --exclude=".git" --exclude="public/distributions" --exclude="public/manual/en" {{ rsync_repositories_dir }}/php-www-web/ {{ rsync_mirrors_dir }}/php-www-web
+rsync -qrltDvzC --exclude=".git" --exclude="public/manual/en" {{ rsync_repositories_dir }}/php-www-web/ {{ rsync_mirrors_dir }}/php-www-web
 
 if ls {{ rsync_mirrors_dir }}/manual-chms/*.chm > /dev/null 2> /dev/null; then
   for i in {{ rsync_mirrors_dir }}/manual-chms/*.chm; do

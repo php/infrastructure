@@ -55,7 +55,6 @@
     - git-clone
     - update-everything
     - update-mirrors
-    - update-phpweb-backend
     - update-php-www-web-backend
 
 - name: Create rsyncd configuration file
