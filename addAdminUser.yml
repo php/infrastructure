@@ -19,7 +19,7 @@
         create_home: yes
         state: present
         groups: sudo
-        append: yes
+        append: true
         shell: /bin/bash
 
   roles:

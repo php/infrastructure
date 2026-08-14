@@ -55,7 +55,7 @@
         create_home: yes
         state: present
         groups: release-manager
-        append: yes
+        append: true
         shell: /bin/bash
 
     - name: Create public_html directory for user
