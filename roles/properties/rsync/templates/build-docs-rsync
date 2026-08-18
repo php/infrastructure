@@ -34,6 +34,8 @@ for i in $langs; do
   # Update the translation files
   assertUpToDateRepo $i $i
   /bin/bash /local/systems/build-docs-lang-rsync $i >/var/log/build-docs-lang-rsync-$i.log 2>&1
+  # Copy logs to web property
+  cp /var/log/build-docs-lang-rsync-$i.log {{ rsync_mirrors_dir }}/docweb/www/logs/
 done
 
 # Build manual lookup db
