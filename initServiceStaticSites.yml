@@ -1,6 +1,9 @@
 # Run this playbook to set up all sites that don't need a database
 # ansible-playbook initServiceStaticSites.yml
 
+# Each property also has a tag. When one (or more) tags are given, only the
+# role(s) for that property is run, and not the set-up of the server.
+
 - hosts:
   - static
 
@@ -15,6 +18,16 @@
       delegate_to: "{{ item }}"
       delegate_facts: true
       loop: "{{ groups['rsync'] }}"
+      tags:
+        - www
+        - doc
+        - downloads
+        - gtk
+        - people
+        - qa
+        - shared
+        - talks
+        - windows
 
     - name: Install common software and configuration
       include_role:
@@ -30,12 +43,29 @@
 
   roles:
     - role: properties/www
-    - role: properties/preview
+      tags:
+        - www
     - role: properties/doc
+      tags:
+        - doc
     - role: properties/downloads
+      tags:
+        - downloads
     - role: properties/gtk
+      tags:
+        - gtk
     - role: properties/people
+      tags:
+        - people
     - role: properties/qa
+      tags:
+        - qa
     - role: properties/shared
+      tags:
+        - shared
     - role: properties/talks
+      tags:
+        - talks
     - role: properties/windows
+      tags:
+        - windows

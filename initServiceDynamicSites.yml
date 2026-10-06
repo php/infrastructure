@@ -1,6 +1,9 @@
 # Run this playbook to set up your machine with all sites requiring a database
 # ansible-playbook initServiceDynamicSites.yml
 
+# Each property also has a tag. When one (or more) tags are given, only the
+# role(s) for that property is run, and not the set-up of the server.
+
 - hosts:
   - dynamic
 
@@ -16,6 +19,10 @@
       delegate_to: "{{ item }}"
       delegate_facts: true
       loop: "{{ groups['rsync'] }}"
+      tags:
+        - bugs
+        - main
+        - pecl
 
     - name: Install common software and configuration
       include_role:
@@ -35,5 +42,11 @@
 
   roles:
     - role: properties/bugs
+      tags:
+        - bugs
     - role: properties/main
+      tags:
+        - main
     - role: properties/pecl
+      tags:
+        - pecl
