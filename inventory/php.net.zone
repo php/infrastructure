@@ -63,8 +63,7 @@ museum			IN CNAME museum-internal-php-net.b-cdn.net.
 ; NNTP server, do NOT switch to CDN
 news			IN CNAME lists.php.net.
 ; HTTP view of mailing lists
-news-web-origin	IN CNAME lists.php.net.
-news-web		IN CNAME news--web-php-net.ax4z.com.
+news-web		IN CNAME news-web-internal-php-net.b-cdn.net.
 
 ; PEAR
 pear-origin		IN CNAME euk3.php.net.
@@ -176,6 +175,8 @@ bk2			IN A 157.90.121.187
 ; DigitalOcean - PHP Project (contact: systems or derick)
 analytics-origin	IN A 167.71.2.31
 			IN AAAA 2a03:b0c0:2:d0::1865:c001
+
+news-web.internal	IN CNAME lists.php.net.
 
 ; =================================================
 ; DigitalOcean - New Infrastructure (contact: systems or derick)
