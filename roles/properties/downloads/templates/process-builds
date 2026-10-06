@@ -3,6 +3,7 @@
 php {{ downloads_docroot }}/runner.php pecl:add {{ windows_builds_options }} 
 php {{ downloads_docroot }}/runner.php php:add {{ windows_builds_options }}
 php {{ downloads_docroot }}/runner.php winlibs:add {{ windows_builds_options }}
+php {{ downloads_docroot }}/runner.php winlibs:delete {{ windows_builds_options }}
 php {{ downloads_docroot }}/runner.php series:init {{ windows_builds_options }}
 php {{ downloads_docroot }}/runner.php series:update {{ windows_builds_options }}
 php {{ downloads_docroot }}/runner.php series:delete {{ windows_builds_options }}
