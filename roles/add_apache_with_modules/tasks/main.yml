@@ -7,6 +7,12 @@
   include_role:
     name: add_self-signed_certs
 
+- name: Add mpm_prefork config
+  template:
+    src: "templates/{{ mod_mpm_prefork_config_file }}"
+    dest: "/etc/apache2/mods-available/{{ mod_mpm_prefork_config_file }}"
+  notify: reload apache
+
 - name: Add remoteip logging config
   template:
     src: "templates/{{ mod_remoteip_config_file }}"
