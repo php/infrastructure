@@ -31,6 +31,8 @@
     - name: Install Apache and common modules
       include_role:
         name: add_apache_with_modules
+      vars:
+        prefork_max_request_workers: 200
 
     - name: Install MariaDB
       include_role:
