@@ -36,6 +36,7 @@
       - jq
       - curl
       - xxd
+      - cron
       state: present
       update_cache: yes
 
